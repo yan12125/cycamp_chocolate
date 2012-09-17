@@ -100,13 +100,13 @@ $(document).on('ready', function(e){
                 $(item).css('display', ((idx === curPage)?'block':'none'));
         });
 
-        var next_texts = [ '下一頁', '下一頁', '下一頁', '下一頁', '確認送出', '重新訂購'  ];
+        var next_texts = [ '', '', '', '', '確認送出', '重新訂購'  ];
 
         $('input[type=button]:eq(0)')
             .val('上一頁')
             .css('display', curPage===0||curPage===5?'none':'block');
         $('input[type=button]:eq(1)')
-            .val(next_texts[curPage]);
+            .val(next_texts[curPage]===''?'下一頁':next_texts[curPage]);
     })();
 
     // define the events of the buttons
@@ -149,30 +149,35 @@ $(document).on('ready', function(e){
         return ret_obj;
     };
 
+    $('#page1 input[name=company]').on('change', function(e){
+        data.company = $('#page1 input[name=company]:checked').val();
+        // copy data of selected company to page3
+        
+        $('#page3 #products').html($('#page1 #catalog').html());
+        $('#page3 #company'+(data.company==='A'?'B':'A')).remove();
+        $('#page3 #productList'+data.company+' tr').append('<td class="count"><input type="number" min="0" value="0"></td>');
+        $('#page3 #products').find('.left, .right').removeClass('left right');
+        $('#page3 #products .count input').on('change', function(e){
+            page3_count();
+        });
+
+        // load schools
+        $('#page2 .receiver_school').html('<option value="請選擇">請選擇</option>');
+        for(var i in companies[data.company].schools)
+        {
+            var school_name = companies[data.company].schools[i];
+            $('#page2 .receiver_school').append('<option value="'+school_name+'">'+school_name+'</option>');
+        }
+    });
+
+    $('#page1 #add_card').on('change', function(e){
+        data.add_card = ($('#page1 #add_card').attr('checked')==='checked')?true:false;
+    });
+
     var verifiers = [];
     verifiers[0] = function(){
-        data.company = $('#page1 input[name=company]:checked').val();
         if(typeof companies[data.company]==='object')
         {
-            // copy data of selected company to page3
-            $('#page3 #products').html($('#page1 #catalog').html());
-            $('#page3 #company'+(data.company==='A'?'B':'A')).remove();
-            $('#page3 #productList'+data.company+' tr').append('<td class="count"><input type="number" min="0" value="0"></td>');
-            $('#page3 #products').find('.left, .right').removeClass('left right');
-            $('#page3 #products .count input').on('change', function(e){
-                page3_count();
-            });
-
-            // load schools
-            $('#page2 .receiver_school').html('<option value="請選擇">請選擇</option>');
-            for(var i in companies[data.company].schools)
-            {
-                var school_name = companies[data.company].schools[i];
-                $('#page2 .receiver_school').append('<option value="'+school_name+'">'+school_name+'</option>');
-            }
-            
-            data.add_card = ($('#page1 #add_card').attr('checked')==='checked')?true:false;
-
             return true;
         }
         else
