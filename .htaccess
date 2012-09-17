@@ -10,10 +10,10 @@
     allow from 127.0.0.1/8
     deny from all
 </FilesMatch>
-#<Directory "trash">
-#    Order deny,allow
-#    Deny from all
-#</Directory>
+<FilesMatch "^trash/.*$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
 php_value display_errors on
 
 # standX.cycamp => generate.php?stand=X
