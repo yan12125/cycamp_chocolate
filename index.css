@@ -68,6 +68,14 @@
     width: 400px;
 }
 
+#page4 #wrapper
+{
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    top: 150px;
+}
+
 #orderer_data
 {
     border: 1px solid black;
@@ -87,6 +95,14 @@
 
 #page6
 {
-    border: 1px solid black;
     width: 500px;
+    border: 1px solid black;
+}
+
+#page6 #results
+{
+    text-align: center;
+    width: 500px;
+    line-height: 500px;
+    /*http://blog.yam.com/hanasan/article/35806444*/
 }

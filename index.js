@@ -338,7 +338,7 @@ $(document).on('ready', function(e){
                 {
                     if(/^[A-G][AB]{2}\d{5}$/.test(data.ID))
                     {
-                        $('#page6').append('訂單編號：'+data.ID);
+                        $('#page6 #results').html('訂單編號：'+data.ID);
                         movePage(+1);
                     }
                     else
