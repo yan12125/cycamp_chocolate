@@ -1,0 +1,17 @@
+雲嘉會 巧克力傳情 線上訂購系統
+
+訂購網頁
+index.html
+index.js
+index.css
+images/ 存放巧克力的圖片
+
+後端處理
+save.php 新增訂購紀錄
+generate.php 產生某個付款地點的訂購資料
+
+.htaccess 
+    1. rewrite standX.cycamp到generate.php?stand=X
+    2. 限制generate.php與standX.cycamp的存取IP
+
+trash 一些暫存檔和不會用到的程式

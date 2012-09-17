@@ -1,0 +1,23 @@
+<Files "generate.php">
+    order deny,allow
+    allow from 140.112.0.0/16
+    allow from 127.0.0.1/8
+    deny from all
+</Files>
+<FilesMatch "^stand[A-G]\.cycamp$">
+    order deny,allow
+    allow from 140.112.0.0/16
+    allow from 127.0.0.1/8
+    deny from all
+</FilesMatch>
+#<Directory "trash">
+#    Order deny,allow
+#    Deny from all
+#</Directory>
+php_value display_errors on
+
+# standX.cycamp => generate.php?stand=X
+RewriteEngine On
+RewriteBase /chocolate
+RewriteRule ^stand([A-G])\.cycamp$ generate.php?stand=$1 [L]
+
