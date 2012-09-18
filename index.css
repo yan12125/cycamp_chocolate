@@ -57,6 +57,12 @@
     width: 600px;
 }
 
+#page2 #note
+{
+    width: 600px;
+    text-align: center;
+}
+
 #page3 #products
 {
     height: 450px;

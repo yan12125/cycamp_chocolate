@@ -1,5 +1,6 @@
 <?php
 require_once './db.php';
+require_once './data.php';
 header('Content-type: text/plain;charset=utf-8');
 
 _main();
@@ -20,12 +21,14 @@ function _main()
     {
         $parts = array();
         // ID => XYZddddd
-        $parts[] = $item['stand'].$item['company'].$item['campus'].sprintf("%05d", $item['ID']);
-        for($i=0;$i<strlen($item['products']);$i++)
+        $campus = campus($item['orderer'], $item['receiver']);
+        $parts[] = $item['stand'].$item['company'].$campus.sprintf("%05d", $item['ID']);
+        $products = json_decode($item['products'], true);
+        for($i=0;$i<count($products);$i++)
         {
-            $parts[] = $item['products']{$i};
+            $parts[] = $products[$i];
         }
-        $parts[] = $item['price'];
+        $parts[] = price($products, $item['company'])+fee($item['company']);
         $parts[] = 0; // 未付款
         $parts[] = 0; // 尚未拿卡片來
         $users = array('receiver', 'orderer');
