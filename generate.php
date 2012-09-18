@@ -28,7 +28,7 @@ function _main()
         {
             $parts[] = $products[$i];
         }
-        $parts[] = price($products, $item['company'])+fee($item['company']);
+        $parts[] = price($products, $item['company'])+fee($item['company'], $campus);
         $parts[] = 0; // 未付款
         $parts[] = 0; // 尚未拿卡片來
         $users = array('receiver', 'orderer');

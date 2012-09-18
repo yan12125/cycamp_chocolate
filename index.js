@@ -246,10 +246,6 @@ $(document).on('ready', function(e){
                     invalid = true;
                 }
 
-                if(window.debug)
-                {
-                    invalid = false;
-                }
                 var msg = '';
                 if(invalid)
                 {

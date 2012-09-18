@@ -52,9 +52,9 @@ function campus($orderer_json, $receiver_json)
     }
 }
 
-function fee($company)
+function fee($company, $campus)
 {
-    switch($company)
+    switch($campus)
     {
         case 'A':
             return $GLOBALS['_data']['companies'][$company]['price'][0];
