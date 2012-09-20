@@ -10,6 +10,7 @@
 
 #banner
 {
+    font-family: "WenQuanYi Zen Hei", "文泉驛正黑", "Microsoft JhengHei", "微軟正黑體", "dfkai-sb", "標楷體";
     width: 700px;
     text-align: center;
     font-size: 30px;
@@ -33,11 +34,12 @@
 #notes
 {
     width: 700px; /* width will be automatically adjusted according to the page width */
-    margin: 30px auto 0px auto;
+    margin: 20px auto 0px auto;
 }
 
 #notes #step
 {
+    width: 60px; /* width wiil calculated as >100px (I don't know why) */
     vertical-align: top;
 }
 
@@ -52,6 +54,11 @@
     /*height: 400px;
     text-align: left;*/
     border: 1px solid black;
+}
+
+#page2 .row
+{
+    margin: 10px;
 }
 
 #choices, #page3 #link
@@ -69,12 +76,6 @@
 .hidden
 {
     display: none;
-}
-
-#page1 img, #page3 img
-{
-    width: 50px;
-    height: 50px;
 }
 
 #page1 .left, #page1 .right
@@ -103,17 +104,23 @@
 #page3 #products td
 {
     vertical-align: middle;
+    padding: 0px 10px 0px 10px;
+}
+
+#page3 img
+{
+    height: 60px;
 }
 
 #page4
 {
-    width: 400px;
+    width: 500px;
 }
 
-#page4 #wrapper
+#page4 #pay_location_wrapper
 {
     position: absolute;
-    width: 400px;
+    width: 500px;
     height: 200px;
     top: 150px;
 }
@@ -122,6 +129,16 @@
 {
     font-size: 20px;
     font-weight: bold;
+}
+
+#page5 #caption_orderer
+{
+    color: blue;
+}
+
+#page5 #caption_receiver
+{
+    color: red;
 }
 
 #orderer_data
@@ -152,6 +169,7 @@
     text-align: center;
     width: 500px;
     margin-top: 150px;
+    font-size: 20px;
 }
 
 #page6 #result_ID
@@ -162,9 +180,15 @@
     text-decoration: underline;
 }
 
+#page6 #emphasized_text
+{
+    color: red;
+    font-size: 130%;
+}
+
 #page6 .fields
 {
-    font-size: 130%;
+    font-size: 170%;
     font-weight: bold;
     color: blue;
 }

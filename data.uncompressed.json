@@ -8,7 +8,7 @@
         "% sign in url must be written as %25"
     ], 
     "page_description": [
-        "請輸入自己傳情人與對方幸運人的資料<br>打*號為必填，且內容不能包含星號", 
+        "請輸入自己傳情人與對方幸運人的資料<br>打*號為必填，且內容不能包含「 * 」符號", 
         "請選擇欲訂購的巧克力種類及數量", 
         "請選擇收據領取及付款地點", 
         "確認資料是否正確<br>請注意，資料送出後無法更改，若領取收據時欲修改資料，須重新填寫收據", 
@@ -65,15 +65,10 @@
         "A": {
             "name": "小福", 
             "text": "至小福前攤位領取", 
-            "time": "00:00~24:00"
+            "time": "10:00~18:00"
         }, 
         "B": {
-            "name": "男二", 
-            "text": "僅提供醫學院、社科院學生使用", 
-            "time": "00:00~24:00"
-        }, 
-        "C": {
-            "name": "男四", 
+            "name": "男二、男四", 
             "text": "僅提供醫學院、社科院學生使用", 
             "time": "00:00~24:00"
         }, 
@@ -205,113 +200,113 @@
                 {
                     "name":"法式松露巧克力", 
                     "price":70 , 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/001法式松露巧克力.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/001法式松露巧克力.small.jpg"
                 }, 
                 {
                     "name":"加州蔓越莓巧克力", 
                     "price":85, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/002T型盒.JPG"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/002T型盒.small.jpg"
                 }, 
                 {
                     "name":"莊園級巧克力牛奶糖", 
                     "price":90, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/003莊園級巧克力牛奶糖.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/003莊園級巧克力牛奶糖.small.jpg"
                 }, 
                 {
                     "name":"澳洲夏威夷豆巧克力", 
                     "price":100, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/004澳洲夏威夷豆巧克力.JPG"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/004澳洲夏威夷豆巧克力.small.jpg"
                 }, 
                 {
                     "name":"白色戀人草莓巧克力", 
                     "price":135, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/005白色戀人草莓巧克力.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/005白色戀人草莓巧克力.small.jpg"
 
                 }, 
                 {
                     "name":"咖啡豆巧克力禮盒", 
                     "price":150, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/006咖啡豆巧克力鐵盒.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/006咖啡豆巧克力鐵盒.small.jpg"
                 }, 
                 {
                     "name":"寶貝熊黑巧禮盒", 
                     "price":185, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/007寶貝熊黑巧禮盒.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/007寶貝熊黑巧禮盒.small.jpg"
                 }, 
                 {
                     "name":"原味65%麻布袋鈕扣", 
                     "price":185, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/008原味65%25麻布袋鈕扣.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/008原味65%25麻布袋鈕扣.small.jpg"
                 }, 
                 {
                     "name":"經典6入綜合巧克力禮盒", 
                     "price":200, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/009經典6入綜合巧克力禮盒.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/009經典6入綜合巧克力禮盒.small.jpg"
                 }, 
                 {
                     "name":"松露巧克力鍋組", 
                     "price":250, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/010松露巧克力鍋組.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/010松露巧克力鍋組.small.jpg"
                 }, 
                 {
                     "name":"皇家12入綜合松露巧克力", 
                     "price":300, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/011皇家12入綜合松露巧克力.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/011皇家12入綜合松露巧克力.small.jpg"
                 }, 
                 {
                     "name":"甜心熊綜合果乾巧克力", 
                     "price":380, 
-                    "img": "FB巧克力宣傳圖片/FLORA傳情/012甜心熊綜合果乾巧克力.jpg"
+                    "img": "FB巧克力宣傳圖片/FLORA傳情/012甜心熊綜合果乾巧克力.small.jpg"
                 }, 
                 {
                     "name":"雪之戀2入盒", 
                     "price":65, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/1. 雪之戀2入盒.JPG"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/1. 雪之戀2入盒.small.jpg"
                 }, 
                 {
                     "name":"Fun Choco經典2入盒", 
                     "price":85, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/2. Fun Choco經典2入盒.JPG"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/2. Fun Choco經典2入盒.small.jpg"
                 }, 
                 {
                     "name":"心型禮盒", 
                     "price":130, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/3.心型鐵盒.JPG"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/3.心型鐵盒.small.jpg"
                 }, 
                 {
                     "name":"Fun Choco薄片CD盒", 
                     "price":180, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/4.Fun Choco黑巧克力CD盒.JPG"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/4.Fun Choco黑巧克力CD盒.small.jpg"
                 }, 
                 {
                     "name":"綜合薄片禮盒", 
                     "price":220, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/5.綜合薄片禮盒-12片裝.jpg"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/5.綜合薄片禮盒-12片裝.small.jpg"
                 }, 
                 {
                     "name":"Fun Choco經典松露盒", 
                     "price":195, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/6. Fun Choco經典松露盒.jpg"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/6. Fun Choco經典松露盒.small.jpg"
                 }, 
                 {
                     "name":"戀璇5入禮盒", 
                     "price":225, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/7. 戀璇5入禮盒.jpg"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/7. 戀璇5入禮盒.small.jpg"
                 }, 
                 {
                     "name":"Fun Choco經典6入盒", 
                     "price":250, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/8. Fun Choco經典6入盒.JPG"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/8. Fun Choco經典6入盒.small.jpg"
                 }, 
                 {
                     "name":"雪之戀9入禮盒", 
                     "price":360, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/9. 雪之戀9入禮盒.JPG"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/9. 雪之戀9入禮盒.small.jpg"
                 }, 
                 {
                     "name":"查理曼黑巧克力頂級禮盒", 
                     "price":1000, 
-                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/10. 查理曼黑巧克力頂級禮盒.JPG"
+                    "img": "FB巧克力宣傳圖片/FUNCHOCO傳情/10. 查理曼黑巧克力頂級禮盒.small.jpg"
                 }
             ], 
             "id": "A", 
@@ -442,72 +437,72 @@
                 {
                     "name":"情輕意重2入禮盒", 
                     "price": 90, 
-                    "img": "巧克力照片/1.情輕意重.jpg"
+                    "img": "巧克力照片/1.情輕意重.small.jpg"
                 }, 
                 {
                     "name":"觸動芳心4入禮盒", 
                     "price":170, 
-                    "img": "巧克力照片/2.觸動芳心.jpg"
+                    "img": "巧克力照片/2.觸動芳心.small.jpg"
                 }, 
                 {
                     "name":"跳動戀愛6入禮盒", 
                     "price":230, 
-                    "img": "巧克力照片/3.觸動愛戀.jpg"
+                    "img": "巧克力照片/3.觸動愛戀.small.jpg"
                 }, 
                 {
                     "name":"深情藏愛8入禮盒", 
                     "price":320, 
-                    "img": "巧克力照片/4.深情藏愛.jpg"
+                    "img": "巧克力照片/4.深情藏愛.small.jpg"
                 }, 
                 {
                     "name":"神秘佳賓10入禮盒", 
                     "price":240, 
-                    "img": "巧克力照片/5.神秘佳賓.jpg"
+                    "img": "巧克力照片/5.神秘佳賓.small.jpg"
                 }, 
                 {
                     "name":"鬆餅拼盤巧克力6入禮盒", 
                     "price":200, 
-                    "img": "巧克力照片/6.鬆餅拼盤巧克力.jpg"
+                    "img": "巧克力照片/6.鬆餅拼盤巧克力.small.jpg"
                 }, 
                 {
                     "name":"馬雅巧克力脆餅棒棒糖6入", 
                     "price":120, 
-                    "img": "巧克力照片/7.馬雅巧克力脆餅棒棒糖.jpg"
+                    "img": "巧克力照片/7.馬雅巧克力脆餅棒棒糖.small.jpg"
                 }, 
                 {
                     "name":"初戀糖衣跳跳糖屋", 
                     "price":380, 
-                    "img": "巧克力照片/8.初戀糖衣跳跳糖屋.jpg"
+                    "img": "巧克力照片/8.初戀糖衣跳跳糖屋.small.jpg"
                 }, 
                 {
                     "name":"活力榛果巧克力", 
                     "price":130, 
-                    "img": "巧克力照片/9.活力榛果巧克力.jpg"
+                    "img": "巧克力照片/9.活力榛果巧克力.small.jpg"
                 }, 
                 {
                     "name":"溫馨巧克力攪拌棒", 
                     "price":250, 
-                    "img": "巧克力照片/10.溫馨巧克力攪拌棒.jpg"
+                    "img": "巧克力照片/10.溫馨巧克力攪拌棒.small.jpg"
                 }, 
                 {
                     "name":"Chic串燒棉花糖", 
                     "price":60, 
-                    "img": "巧克力照片/11.CHIC串燒棉花糖.jpg"
+                    "img": "巧克力照片/11.CHIC串燒棉花糖.small.jpg"
                 }, 
                 {
                     "name":"Chic棉花糖禮盒", 
                     "price":60, 
-                    "img": "巧克力照片/12.CHIC棉花糖禮盒.jpg"
+                    "img": "巧克力照片/12.CHIC棉花糖禮盒.small.jpg"
                 }, 
                 {
                     "name":"Chic傳情棉花糖", 
                     "price":40, 
-                    "img": "巧克力照片/13.CHIC傳情棉花糖.jpg"
+                    "img": "巧克力照片/13.CHIC傳情棉花糖.small.jpg"
                 }, 
                 {
                     "name":"Chic熊麻吉", 
                     "price":80, 
-                    "img": "巧克力照片/14.CHIC熊麻吉.jpg"
+                    "img": "巧克力照片/14.CHIC熊麻吉.small.jpg"
                 }
             ], 
             "id": "B", 

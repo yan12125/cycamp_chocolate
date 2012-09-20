@@ -18,36 +18,84 @@
                     $('body').html('Error!');
                     return;
                 }
-                if(params2.company !== '')
-                {
-                    $.ajax({
-                        url:'./data.json', 
-                        success: function(data, status, xhr){
-                            var type2 = ({schools:'可送達學校的名單', products: '巧克力型錄'})[params2.type];
-                            var list = data.companies[params2.company][params2.type];
-                            $('#title').html(data.companies[params2.company].name+'工作室 '+type2);
-                            for(var i=0;i<list.length;i++)
+                $.ajax({
+                    url:'./data.json', 
+                    success: function(data, status, xhr){
+                        var type2 = ({schools:'可送達學校的名單', products: '巧克力型錄'})[params2.type];
+                        var list = data.companies[params2.company][params2.type];
+                        $('#title').html(data.companies[params2.company].name+'工作室 '+type2);
+                        for(var i=0;i<list.length;i++)
+                        {
+                            switch(params2.type)
                             {
-                                switch(params2.type)
-                                {
-                                    case 'products':
-                                        $('#list').append('<tr><td><img src="images/'+list[i].img+'"></td><td>'+list[i].name+'</td><td>$'+list[i].price+'</td></tr>');
-                                        break;
-                                    case 'schools':
-                                        $('#list').append('<tr><td>'+list[i]+'</td></tr>');
-                                        break;
-                                }
+                                case 'products':
+                                    var src = 'images/'+list[i].img;
+                                    var src_normal = src.replace('.small.jpg', '.jpg');
+                                    $('#list').append('<tr><td><a href="'+src_normal+'" target="_blank"><img src="'+src+'"></a></td><td>'+list[i].name+'</td><td>$'+list[i].price+'</td></tr>');
+                                    break;
+                                case 'schools':
+                                    $('.left').width(900);
+                                    $('#list').append('<tr></tr>');
+                                    for(var j=0;j<4&&i+j<list.length;j++)
+                                    {
+                                        $('#list tr:last').append('<td>'+list[i+j]+'</td>');
+                                    }
+                                    i+=3;
+                                    break;
                             }
-                        }, 
-                        error: function(xhr, status, xhr){}, 
-                        datatype: 'json'
-                    });
-                }
+                        }
+                        $('#list img').on('mousemove', function(e){
+                            var img_src = this.src.replace('.small.jpg', '.jpg');
+                            // avoid flicker
+                            if($('#big_img').attr('src') !== img_src)
+                            {
+                                $('#big_img').attr('src', img_src);
+                            }
+                            $('#big_img').css({
+                                'display': 'block' 
+                            });
+                        });
+                        $('#list img').on('mouseout', function(e){
+                            $('#big_img').css('display', 'none');
+                        });
+                    }, 
+                    error: function(xhr, status, xhr){}, 
+                    datatype: 'json'
+                });
             });
         </script>
         <style>
+            body
+            {
+                background: white;
+            }
+
+            #wrapper
+            {
+                margin-top: 80px;
+                width: 950px;
+            }
+
+            .left
+            {
+                width: 300px;
+                float: left;
+            }
+
+            .right
+            {
+                float: right;
+                width: 650px;
+            }
+
             #title
             {
+                background: white;
+                left: 0px;
+                top: 0px;
+                padding: 20px;
+                width: 950px;
+                position: fixed;
                 font-size: 30px;
                 font-weight: bold;
             }
@@ -56,11 +104,30 @@
             {
                 width: 100px;
                 height: 100px;
+                border: none;
+            }
+
+            #big_img
+            {
+                position: fixed;
+                left: 350px;
+                top: 80px;
+                display: none;
+                max-width: 600px;
+                max-height: 600px;
             }
         </style>
     </head>
     <body>
         <span id="title"></span>
-        <table id="list"></table>
+        <div id="wrapper">
+            <div class="left">
+                <table id="list"></table>
+            </div>
+            <div class="right">
+                <!--http://stackoverflow.com/questions/9126105/blank-image-encoded-as-data-uri-->
+                <img id="big_img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></img>
+            </div>
+        </div>
     </body>
 </html>

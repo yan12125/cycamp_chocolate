@@ -19,7 +19,7 @@ function _main()
     $required_fields = array(
         'add_card' => '/^[0-1]$/', 
         'company' => '/^[A-B]$/', 
-        'stand_name' => '/^[A-G]$/', 
+        'stand_name' => '/^[A-BD-G]$/', 
         'ordered_products' => '/^\[(\d+,){13,21}\d+\]$/', // json contains 14-1 or 22-1 numbers
         'orderer' => $basic_data, 
         'receiver' => $basic_data, 

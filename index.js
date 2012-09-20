@@ -108,7 +108,7 @@ $(document).on('ready', function(e){
                         $(item).css('display', ((idx === curPage)?'block':'none'));
                 });
 
-                var next_texts = [ '開始訂購', '', '', '', '確認送出', '重新訂購' ];
+                var next_texts = [ '開始訂購', '', '', '', '確認送出', '再次訂購' ];
                 var previous_texts = [ '', '', '', '', '修改', '' ];
 
                 $('input[type=button]:eq(0)')
@@ -268,7 +268,7 @@ $(document).on('ready', function(e){
                 }
                 if(contains_asterisk)
                 {
-                    msg += '內容不能包含星號！\n';
+                    msg += '內容不能包含「 * 」符號！\n';
                 }
                 if(msg!=='')
                 {
@@ -322,7 +322,7 @@ $(document).on('ready', function(e){
                     // output all data on the last page
                     $('#page5 #fee').html(data.fee);
                     $('#page5 #total').html(data.total);
-                    $('#page5 #stand').html(stands[data.stand_name].name);
+                    $('#page5 #stand').html(stands[data.stand_name].name.replace('、', '或'));
                     $('#page5 #add_card').html(data.add_card===1?'是':'否');
                     $('#page5 #company').html(companies[data.company].name);
                     $('#page5 #products').html('');
@@ -366,16 +366,18 @@ $(document).on('ready', function(e){
                                 $('#page6 #result_ID').html(data2.ID);
                                 $('#page6 #time').html(stands[data.stand_name].time);
                                 $('#page6 #money').html(data.total);
-                                $('#page6 #place').html(stands[data.stand_name].name);
+                                $('#page6 #place').html(stands[data.stand_name].name.replace('、', '或'));
                                 movePage(+1);
                             }
                             else
                             {
+                                alert('發生意外的錯誤，請稍候再試一遍');
                                 console.log(data);
                             }
                         }
                         else
                         {
+                            alert('發生意外的錯誤，請稍候再試一遍');
                             console.log(data);
                         }
                     }, 
