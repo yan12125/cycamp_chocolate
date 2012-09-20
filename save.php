@@ -13,7 +13,7 @@ function _main()
         'grade' => '/(^$)|(^[1-7]$)/', 
         'class' => '/.*/', 
         'tel' => '/^0[2-9]\d{7,8}$/', 
-        'email' => '/^[a-zA-z0-9.%+-]+@([a-zA-Z0-9-_]+\\.)+[a-zA-Z0-9-_]+$/', 
+        'email' => '/(^$)|(^[a-zA-z0-9.%+-]+@([a-zA-Z0-9-_]+\\.)+[a-zA-Z0-9-_]+$)/', 
         'comment' => '/.*/'
     );
     $required_fields = array(
@@ -65,19 +65,29 @@ function _main()
 }
 function getMaxID($dbh, $data, $campus, $stand)
 {
+    //print_r(func_get_args());
     $ID = 0;
-    $query = "SELECT MAX(ID) from chocolate WHERE company=? AND stand=? AND campus=?";
+    $query = "SELECT ID,receiver from chocolate WHERE company=? AND stand=?";
     $stmt = $dbh->prepare($query);
-    $stmt->execute(array($data['company'], $stand, $campus));
-    $result = $stmt->fetchAll();
-    if(count($result)===0)
+    $stmt->execute(array($data['company'], $stand));
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $IDs = array();
+    foreach($result as $item)
     {
-       $ID = 0;
+        $receiver_data = json_decode($item['receiver'], true);
+        $campus2 = ($receiver_data['school']==='台灣大學')?'A':'B';
+        if($campus2 === $campus)
+        {
+            $IDs[] = $item['ID'];
+        }
+    }
+    if(count($IDs) === 0)
+    {
+        return 0;
     }
     else
     {
-       $ID = (integer)$result[0][0];
+        return max($IDs);
     }
-    return $ID;
 }
 ?>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>雲嘉會巧克力傳情 - 商品型錄</title>
+        <script type="text/javascript" src="/HTML/library/jquery.js"></script>
+        <script type="text/javascript">
+            $(document).on('ready', function(e){
+                var params = location.search.substr(1).split('&');
+                var params2 = [];
+                for(var i=0;i<params.length;i++)
+                {
+                    var arr = params[i].split('=');
+                    params2[arr[0]] = arr[1];
+                }
+                if(!(/^[AB]$/.test(params2.company)&&/^(products|schools)$/.test(params2.type)))
+                {
+                    $('body').html('Error!');
+                    return;
+                }
+                if(params2.company !== '')
+                {
+                    $.ajax({
+                        url:'./data.json', 
+                        success: function(data, status, xhr){
+                            var type2 = ({schools:'可送達學校的名單', products: '巧克力型錄'})[params2.type];
+                            var list = data.companies[params2.company][params2.type];
+                            $('#title').html(data.companies[params2.company].name+'工作室 '+type2);
+                            for(var i=0;i<list.length;i++)
+                            {
+                                switch(params2.type)
+                                {
+                                    case 'products':
+                                        $('#list').append('<tr><td><img src="images/'+list[i].img+'"></td><td>'+list[i].name+'</td><td>$'+list[i].price+'</td></tr>');
+                                        break;
+                                    case 'schools':
+                                        $('#list').append('<tr><td>'+list[i]+'</td></tr>');
+                                        break;
+                                }
+                            }
+                        }, 
+                        error: function(xhr, status, xhr){}, 
+                        datatype: 'json'
+                    });
+                }
+            });
+        </script>
+        <style>
+            #title
+            {
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            #list img
+            {
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <span id="title"></span>
+        <table id="list"></table>
+    </body>
+</html>

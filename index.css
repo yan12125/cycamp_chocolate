@@ -8,6 +8,13 @@
     margin: 0px auto;
 }
 
+#banner
+{
+    width: 700px;
+    text-align: center;
+    font-size: 30px;
+}
+
 .pages
 {
     height: 500px;
@@ -18,21 +25,45 @@
     float: left;
 }
 
-#page1 .left, #page5 .left, #page1 .right, #page5 .right
-{
-    width: 50%;
-}
-
 .right
 {
     float: right;
 }
 
-#choices, #add_card_wrapper
+#notes
+{
+    width: 700px; /* width will be automatically adjusted according to the page width */
+    margin: 30px auto 0px auto;
+}
+
+#notes #step
+{
+    vertical-align: top;
+}
+
+#page1 .left, #page5 .left, #page1 .right, #page5 .right
+{
+    width: 50%;
+}
+
+#page1 #messages
+{
+    width: 700px;
+    /*height: 400px;
+    text-align: left;*/
+    border: 1px solid black;
+}
+
+#choices, #page3 #link
 {
     float: clear;
     width: 200px;
     margin: 0px auto;
+}
+
+#page3 #link
+{
+    width: 700px;
 }
 
 .hidden
@@ -69,6 +100,11 @@
     overflow-y: scroll;
 }
 
+#page3 #products td
+{
+    vertical-align: middle;
+}
+
 #page4
 {
     width: 400px;
@@ -80,6 +116,12 @@
     width: 400px;
     height: 200px;
     top: 150px;
+}
+
+#page5 .caption
+{
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #orderer_data
@@ -109,6 +151,20 @@
 {
     text-align: center;
     width: 500px;
-    line-height: 500px;
-    /*http://blog.yam.com/hanasan/article/35806444*/
+    margin-top: 150px;
+}
+
+#page6 #result_ID
+{
+    font-size: 40px;
+    color: red;
+    margin: 30px auto 30px auto;
+    text-decoration: underline;
+}
+
+#page6 .fields
+{
+    font-size: 130%;
+    font-weight: bold;
+    color: blue;
 }
