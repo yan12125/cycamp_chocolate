@@ -29,6 +29,7 @@
                             switch(params2.type)
                             {
                                 case 'products':
+                                    $('#img_tip').show();
                                     var src = 'images/'+list[i].img;
                                     var src_normal = src.replace('.small.jpg', '.jpg');
                                     $('#list').append('<tr><td><a href="'+src_normal+'" target="_blank"><img src="'+src+'"></a></td><td>'+list[i].name+'</td><td>$'+list[i].price+'</td></tr>');
@@ -120,6 +121,7 @@
 
             #img_tip
             {
+                display: none;
                 font-size: 40px;
                 position: fixed;
                 left: 350px;
