@@ -38,6 +38,9 @@
                     活動總負責人：電機二 黃大珉 0921159155<br>
                 </div>
                 <div id="links"></div>
+                <div id="like_button">
+                    <iframe src="like.html" width="350" frameBorder="0"></iframe>
+                </div>
                 <span id="choices">請選擇您要訂購的廠商：</span>
             </div>
             <div id="page2">
@@ -69,6 +72,12 @@
                     </fieldset><br>
                     <div>
                         注意事項：
+                        <ol><li>請在您選擇的地點結帳領取收據，否則會沒有您的預購資料，要再填寫一次訂單，浪費您寶貴時間。</li>
+                        <li>請您在填寫完後隔天再前往指定地點結帳。</li>
+                        <li>各宿舍服務人員詳細服務時段與服務地點將在訂單送出後顯示，請多加留意。</li>
+                        <li>對於領取收據方面有任何疑問，請洽詢我們的FB粉絲團或活動負責人。
+                        <br><a href="https://www.facebook.com/CyChocolate">https://www.facebook.com/CyChocolate</a></li>
+                        </ol>
                     </div>
                 </div>
             </div>

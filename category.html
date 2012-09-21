@@ -115,6 +115,17 @@
                 display: none;
                 max-width: 600px;
                 max-height: 600px;
+                z-index: 1;
+            }
+
+            #img_tip
+            {
+                font-size: 40px;
+                position: fixed;
+                left: 350px;
+                top: 80px;
+                padding: 100px;
+                z-index: 0;
             }
         </style>
     </head>
@@ -127,6 +138,7 @@
             <div class="right">
                 <!--http://stackoverflow.com/questions/9126105/blank-image-encoded-as-data-uri-->
                 <img id="big_img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></img>
+                <div id="img_tip">滑鼠移到圖片上，<br>就會出現大圖喔</div>
             </div>
         </div>
     </body>

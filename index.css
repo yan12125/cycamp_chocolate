@@ -1,6 +1,6 @@
 #wrapper
 {
-    width: 700px;
+    width: 800px;
 }
 
 #wrapper, .pages, #buttons
@@ -11,7 +11,7 @@
 #banner
 {
     font-family: "WenQuanYi Zen Hei", "文泉驛正黑", "Microsoft JhengHei", "微軟正黑體", "dfkai-sb", "標楷體";
-    width: 700px;
+    width: 800px;
     text-align: center;
     font-size: 30px;
 }
@@ -33,7 +33,7 @@
 
 #notes
 {
-    width: 700px; /* width will be automatically adjusted according to the page width */
+    width: 800px; /* width will be automatically adjusted according to the page width */
     margin: 20px auto 0px auto;
 }
 
@@ -50,10 +50,20 @@
 
 #page1 #messages
 {
-    width: 700px;
-    /*height: 400px;
-    text-align: left;*/
+    width: 800px;
     border: 1px solid black;
+}
+
+#page1 #links, #page1 #choices
+{
+    float: left;
+    width: 450px; /*800-292px*/
+}
+
+#page1 #like_button
+{
+    float: right;
+    width: 350px;
 }
 
 #page2 .row
