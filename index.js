@@ -66,7 +66,6 @@ $(document).on('ready', function(e){
                 $('#page2 .orderer_department').append('<option value="'+id+'">'+id+' '+departments[id]+'</option>');
             }
 
-
             // load grades
             $('#page2 select[class$=_grade]').append('<option value="請選擇">請選擇</option>');
             for(var i in grades)
@@ -179,6 +178,29 @@ $(document).on('ready', function(e){
                     var s = companies[data.company].products[j];
                     $('#page3 #products').append('<tr><td class="img"><img src="images/'+s.img+'"></td><td class="name">'+s.name+'</td><td class="price">$'+s.price+'</td><td><input type="number" class="count" min="0" value="0"></td></tr>');
                 }
+                if($('#page3 #products .count')[0].type !== "number") // browser doesn't support html5 number
+                {
+                    $('#page3 #products tr').append('<img src="images/plus.png" class="btn"><img src="images/minus.png" class="btn">');
+                    $('#page3 #products img').on('click', function(e){
+                        var item = $(this).parent().find('.count');
+                        var delta = (this.src.indexOf('plus.png')!==-1)?(+1):(-1);
+                        var original_value = parseInt(item.val());
+                        if(!isNaN(original_value))
+                        {
+                            if(original_value+delta>=0)
+                            {
+                                item.val(original_value+delta);
+                                // seems onchange is not call in firefox 15
+                                page3_count(); 
+                            }
+                        }
+                        else
+                        {
+                            alert('輸入錯誤！');
+                        }
+                    });
+                }
+
                 $('#page3 #products .count').on('change', function(e){
                     page3_count();
                 });
