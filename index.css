@@ -64,7 +64,7 @@
 {
     float: right;
     width: 350px;
-    height: 100px;
+    height: 1px; /* prevent to change the location of 開始訂購 */
 }
 
 #page2 .row
@@ -133,7 +133,7 @@
     position: absolute;
     width: 500px;
     height: 200px;
-    top: 150px;
+    top: 100px;
 }
 
 #page5 .caption
@@ -165,7 +165,7 @@
 #order_detail
 {
     width: 590px;
-    height: 400px;
+    height: 450px;
     border: 1px solid black;
 }
 

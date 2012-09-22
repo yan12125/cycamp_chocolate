@@ -35,9 +35,16 @@ function _main()
         foreach($users as $user)
         {
             $user_data = json_decode($item[$user], true);
-            foreach($user_data as $data_item)
+            foreach($user_data as $key => $data_item)
             {
-                $parts[] = $data_item===''?'無':$data_item;
+                if($key=='department'&&$user_data['school']=='台灣大學')
+                {
+                    $parts[] = $GLOBALS['_data']['departments'][$data_item];
+                }
+                else
+                {
+                    $parts[] = $data_item===''?'無':$data_item;
+                }
             }
         }
         $parts[] = date('Y/m/d', strtotime($item['date']));

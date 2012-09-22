@@ -397,6 +397,15 @@ $(document).on('ready', function(e){
                     movePage(dir);
                 }
             });
+
+            // load FB like button
+            FB.init({
+                appId      : '227382584057414',
+                channelUrl : '//chyen.twbbs.org/chocolate/test/channel.html', // Channel File
+                status     : true, // check login status
+                cookie     : true, // enable cookies to allow the server to access the session
+                xfbml      : true  // parse XFBML
+            });
         }, 
         'error': function(xhr, status, err){
             alert('載入資料檔時發生錯誤！請重新整理');
