@@ -1,19 +1,17 @@
 <?
-function validate_and_parse($src, $required_fields)
+function validate_and_parse($src, &$dst, $required_fields, &$invalid_fields)
 {
-    $invalid_fields = array();
-    $data = array();
     foreach($required_fields as $key=>$item)
     {
         switch(gettype($item))
         {
             case 'array':
-                $data[$key] = array();
+                $dst[$key] = array();
                 foreach($item as $sub_key=>$sub_item) // here $sub_item are regexps
                 {
                     if(isset($src[$key][$sub_key])&&preg_match($sub_item, $src[$key][$sub_key])===1)
                     {
-                        $data[$key][$sub_key] = $src[$key][$sub_key];
+                        $dst[$key][$sub_key] = $src[$key][$sub_key];
                     }
                     else
                     {
@@ -24,7 +22,7 @@ function validate_and_parse($src, $required_fields)
             case 'string': // here $item are regexps
                 if(isset($src[$key])&&(preg_match($item, $src[$key])===1))
                 {
-                    $data[$key] = $src[$key];
+                    $dst[$key] = $src[$key];
                 }
                 else
                 {
@@ -33,14 +31,6 @@ function validate_and_parse($src, $required_fields)
                 break;
         }
     }
-    if(count($invalid_fields) === 0)
-    {
-        return $data;
-    }
-    else
-    {
-        echo 'Invalid fields: '.implode(', ', $invalid_fields)."\n";
-        return false;
-    }
+    return (count($invalid_fields) === 0);
 }
 ?>

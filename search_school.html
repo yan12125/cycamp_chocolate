@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>雲嘉會巧克力傳情 - 商品型錄</title>
+        <script type="text/javascript" src="/HTML/library/jquery.js"></script>
+        <script type="text/javascript">
+            $(document).on('ready', function(e){
+                $.ajax({
+                    url: './data.json', 
+                    datatype: 'json', 
+                    type: 'GET', 
+                    success: function(data, status, xhr){
+                        $('#query_school').on('submit', function(e){
+                            var keyword = $('#school_name').val();
+                            if(keyword!=='')
+                            {
+                                var schools = {};
+                                var regex = new RegExp(keyword.split('').join('.*'));
+                                for(var i=65;i<=66;i++)
+                                {
+                                    var ID = String.fromCharCode(i);
+                                    var _school_list = data.companies[ID].schools;
+                                    for(var j=0;j<_school_list.length;j++)
+                                    {
+                                        if(typeof schools[_school_list[j]]==='undefined')
+                                        {
+                                            schools[_school_list[j]] = [ data.companies[ID].name ];
+                                        }
+                                        else
+                                        {
+                                            schools[_school_list[j]].push(data.companies[ID].name);
+                                        }
+                                    }
+                                }
+
+                                var matched = {};
+                                for(var i in schools)
+                                {
+                                    var school_name2 = i.split('（')[0]; // pick the part before（
+                                    if(regex.test(school_name2))
+                                    {
+                                        matched[i] = schools[i];
+                                    }
+                                }
+                                $('#result tbody').html('');
+                                if(!$.isEmptyObject(matched))
+                                {
+                                    for(var i in matched)
+                                    {
+                                        var company_names = matched[i].join('、');
+                                        if(matched[i].length===2)
+                                        {
+                                            company_names += '皆可';
+                                        }
+                                        $('#result tbody').append('<tr><td>'+i+'</td><td>'+company_names+'</td></tr>');
+                                    }
+                                    $('#result').show();
+                                    $('#message').hide();
+                                }
+                                else
+                                {
+                                    $('#message').html('您查詢的學校並不在兩家廠商的送達範圍內');
+                                    $('#result').hide();
+                                    $('#message').show();
+                                }
+                            }
+                            return false;
+                        });
+                        $('#school_name').focus();
+                    }, 
+                    error: function(data, status, xhr){
+                        alert('資料檔無法下載，請稍候再試');
+                    }
+                });
+            });
+        </script>
+        <style>
+            body
+            {
+                font-size: 20px;
+            }
+            #result
+            {
+                display: none;
+            }
+            #result thead td
+            {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <br>
+        <form id="query_school" action="#" method="GET">
+            學校名稱：
+            <input type="text" id="school_name">
+            <input type="submit" value="查詢">
+        </form>
+        <br><hr><br>
+        <table id="result">
+            <thead>
+                <tr><td>學校</td><td>可送達的廠商</td></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="message">請輸入學校的名稱搜尋(可用縮寫，如成大、高醫等)</div>
+    </body>
+</html>

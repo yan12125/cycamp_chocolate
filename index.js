@@ -3,6 +3,11 @@ jQuery.fn.outerHTML = function(){
     return jQuery("<p>").append(this.eq(0).clone()).html();
 };
 
+if(location.search.indexOf('debug')!==-1)
+{
+    window.debug = 1;
+}
+
 $(document).on('ready', function(e){
     // load all data from data.json
     $.ajax({
@@ -141,8 +146,7 @@ $(document).on('ready', function(e){
                 $('#page3 #products tr').each(function(idx, item){
                     var count_item = $(item).find('.count');
                     count_item.css({background: '', color: ''});
-                    var count = parseInt(count_item.val());
-                    if(isNaN(count))
+                    if(!(/^\d+$/.test(count_item.val())))
                     {
                         count_item.css({background: 'yellow', color: 'red'});
                         valid = false;
@@ -173,15 +177,16 @@ $(document).on('ready', function(e){
                 data.company = $('#page1 input[name=company]:checked').val();
                 
                 // load the products of the selected company
+                $('#page3 #products tbody').html('');
                 for(var j in companies[data.company].products)
                 {
                     var s = companies[data.company].products[j];
-                    $('#page3 #products').append('<tr><td class="img"><img src="images/'+s.img+'"></td><td class="name">'+s.name+'</td><td class="price">$'+s.price+'</td><td><input type="number" class="count" min="0" value="0"></td></tr>');
+                    $('#page3 #products tbody').append('<tr><td class="img"><img src="images/'+s.img+'"></td><td class="name">'+s.name+'</td><td class="price">$'+s.price+'</td><td><input type="number" class="count" min="0" value="0"></td></tr>');
                 }
                 if($('#page3 #products .count')[0].type !== "number") // browser doesn't support html5 number
                 {
-                    $('#page3 #products tr').append('<img src="images/plus.png" class="btn"><img src="images/minus.png" class="btn">');
-                    $('#page3 #products img').on('click', function(e){
+                    $('#page3 #products tr').find('td:last').append('<img src="images/plus.png" class="btn"><img src="images/minus.png" class="btn">');
+                    $('#page3 #products img').on('mousedown', function(e){
                         var item = $(this).parent().find('.count');
                         var delta = (this.src.indexOf('plus.png')!==-1)?(+1):(-1);
                         var original_value = parseInt(item.val());
@@ -284,6 +289,10 @@ $(document).on('ready', function(e){
                 }
 
                 var msg = '';
+                if(window.debug)
+                {
+                    invalid = false;
+                }
                 if(invalid)
                 {
                     msg += '部份資料未填或不完整！\n';
@@ -320,7 +329,7 @@ $(document).on('ready', function(e){
             verifiers[2] = function(){
                 if(!page3_validate_numbers())
                 {
-                    alert('輸入錯誤：非數字');
+                    alert('輸入錯誤：非正整數');
                     return false;
                 }
                 var result = page3_count();
@@ -343,17 +352,17 @@ $(document).on('ready', function(e){
                 {
                     // output all data on the last page
                     $('#page5 #fee').html(data.fee);
-                    $('#page5 #total').html(data.total);
+                    $('#page5 #total2').html(data.total);
                     $('#page5 #stand').html(stands[data.stand_name].name.replace('、', '或'));
-                    $('#page5 #add_card').html(data.add_card===1?'是':'否');
+                    $('#page5 #add_card2').html(data.add_card===1?'是':'否');
                     $('#page5 #company').html(companies[data.company].name);
-                    $('#page5 #products').html('');
+                    $('#page5 #products2').html('');
                     for(var i in companies[data.company].products)
                     {
                         if(data.ordered_products[i]>0)
                         {
                             var cur_product = companies[data.company].products[i];
-                            $('#page5 #products').append(cur_product.name+' $'+cur_product.price+' *'+data.ordered_products[i]+'<br>');
+                            $('#page5 #products2').append(cur_product.name+' $'+cur_product.price+' *'+data.ordered_products[i]+'<br>');
                         }
                     }
                     for(var idx in users)
@@ -394,16 +403,19 @@ $(document).on('ready', function(e){
                             else
                             {
                                 alert('發生意外的錯誤，請稍候再試一遍');
-                                console.log(data);
+                                //console.log(data);
                             }
                         }
                         else
                         {
                             alert('發生意外的錯誤，請稍候再試一遍');
-                            console.log(data);
+                            //console.log(data);
                         }
                     }, 
-                    error: function(xhr, status, err){console.log(err, xhr);}
+                    error: function(xhr, status, err){
+                        alert('發生意外的錯誤，請稍候再試一遍');
+                        //console.log(err, xhr);
+                    }
                 });
                 return false; // move page manually
             };

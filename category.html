@@ -55,9 +55,11 @@
                             $('#big_img').css({
                                 'display': 'block' 
                             });
+                            $('#img_tip').hide();
                         });
                         $('#list img').on('mouseout', function(e){
                             $('#big_img').css('display', 'none');
+                            $('#img_tip').show();
                         });
                     }, 
                     error: function(xhr, status, xhr){}, 

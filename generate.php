@@ -1,6 +1,7 @@
 <?php
 require_once './db.php';
 require_once './data.php';
+//require_once './auth.php';
 header('Content-type: text/plain;charset=utf-8');
 
 _main();
@@ -30,7 +31,7 @@ function _main()
         }
         $parts[] = price($products, $item['company'])+fee($item['company'], $campus);
         $parts[] = 0; // 未付款
-        $parts[] = 0; // 尚未拿卡片來
+        $parts[] = $item['card'];
         $users = array('receiver', 'orderer');
         foreach($users as $user)
         {
@@ -39,7 +40,7 @@ function _main()
             {
                 if($key=='department'&&$user_data['school']=='台灣大學')
                 {
-                    $parts[] = $GLOBALS['_data']['departments'][$data_item];
+                    $parts[] = $data_item.$GLOBALS['_data']['departments'][$data_item];
                 }
                 else
                 {

@@ -6,6 +6,7 @@
         <!--link rel="shortcut icon" href="/chocolate/cloudhome.ico"-->
         <link rel="stylesheet" href="index.css" type="text/css">
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
+        <script type="text/javascript" src="/HTML/library/json2.js"></script>
         <script src="//connect.facebook.net/zh_TW/all.js"></script>
         <script type="text/javascript" src="./index.js"></script>
     </head>
@@ -31,7 +32,7 @@
                         <li>台大雲嘉會巧克力傳情僅提供台大校內學生的服務，如有不便，敬請見諒。</li>
                         <li>本預購單僅為縮減各位同學來排隊的時間，巧克力以實品為主，如果網頁上的圖片有任何疑問，請洽詢我們的負責人。</li>
                         <li>填寫預購單後仍須到我們的攤位或是各宿舍的駐點向服務人員付款簽名並領取收據，填寫預購單僅為縮減同學們滯留攤位的時間，收據會由我們統一填寫並交給同學們，請同學妥善保存。</li>
-                        <li>我們的承辦廠商有─山豬頭工作室與齊可工作室兩家，這兩家廠商能傳情的學校略有不同，請各位同學在選購巧克力前先看清楚您所要傳達的學校是否在清單內，沒在清單內的學校並沒有提供傳情服務。</li>
+                        <li>我們的承辦廠商有─山豬頭工作室與齊可工作室兩家，這兩家廠商能傳情的學校略有不同，請各位同學在選購巧克力前先<a href="search_school.html" target="_blank">查詢</a>您所要傳達的學校是否在清單內，沒在清單內的學校並沒有提供傳情服務。</li>
                         <li>訂單一旦送出後將無法做更改，請送出前務必確認您的資料正確性。您在領取收據時可以要求更改資料及訂購商品，但是要重填訂單，可能會浪費您寶貴的時間，敬請見諒。</li>
                         <li>您可以在巧克力訂單上附上卡片喔～卡片可以向我們小福攤位領取或是自備。（自備卡片請不要太大）</li>
                     </ol>
@@ -58,7 +59,7 @@
                 </div>
             </div>
             <div id="page3">
-                <div id="products"></div>
+                <div id="products_wrapper"><table id="products"><tbody></tbody></table></div>
                 <div class="left">
                     <div id="fee"></div>
                     <div id="link">
@@ -85,18 +86,18 @@
             </div>
             <div id="page5">
                 <div class="left">
-                    <div class="caption" id="caption_orderer">傳情人資料：</div>
+                    <div class="caption" id="caption_orderer">傳情人資料(自己)</div>
                     <div id="orderer"></div><br>
                     <div class="caption">商品列表：</div>
-                    <div id="products"></div>
+                    <div id="products2"></div>
                 </div>
                 <div class="right">
-                    <div class="caption" id="caption_receiver">幸運人資料：</div>
+                    <div class="caption" id="caption_receiver">幸運人資料(對方)</div>
                     <div id="receiver"></div><br>
                     <div class="caption">訂單資料：</div>
-                    總價：$<span id="total"></span><br>
+                    總價：$<span id="total2"></span><br>
                     付款地點：<span id="stand"></span><br>
-                    是否附加卡片：<span id="add_card"></span><br>
+                    是否附加卡片：<span id="add_card2"></span><br>
                 </div>
             </div>
             <div id="page6">

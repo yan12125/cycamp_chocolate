@@ -25,8 +25,8 @@ function _main()
         'receiver' => $basic_data, 
     );
     $output = array();
-    $data = validate_and_parse($_POST, $required_fields);
-    if($data!==false)
+    $invalid_fields = array();
+    if(validate_and_parse($_POST, $data, $required_fields, $invalid_fields))
     {
         $dbh = start_db();
         $campus = $data['receiver']['school']==='台灣大學'?'A':'B';
@@ -60,6 +60,7 @@ function _main()
     {
         $output['status'] = 'error';
         $output['info'] = 'Invalid data';
+        $output['invalid_fields'] = $invalid_fields;
     }
     echo json_encode($output);
 }
