@@ -56,10 +56,6 @@
                             {
                                 $('#big_img').attr('src', img_src);
                             }
-                            $('#big_img').css({
-                                'display': 'block' 
-                            });
-                            $('#img_tip').hide();
                             if($.browser.msie === true)
                             {
                                 var big_img = $('#big_img');
@@ -73,9 +69,14 @@
                                     big_img.width(600);
                                 }
                             }
+                            $('#big_img').css({
+                                'display': 'block' 
+                            });
+                            $('#img_tip').hide();
                         });
                         $('#list img').on('mouseout', function(e){
                             $('#big_img').css('display', 'none');
+                            $('#big_img').attr('src', 'images/empty.gif');
                             $('#img_tip').show();
                         });
                     }, 
