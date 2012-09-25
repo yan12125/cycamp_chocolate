@@ -105,8 +105,9 @@
                     <span id="emphasized_text">請記下您的訂單編號：</span>
                     <div id="result_ID"></div>
                     並在服務時段<span id="time" class="fields"></span>
-                    攜帶<span class="fields">$</span><span id="money" class="fields"></span><br>
-                    至<span id="place" class="fields"></span>領取收據
+                    攜帶<span class="fields">$</span><span id="money" class="fields"></span>
+                    至<span id="place" class="fields"></span><br>
+                    向駐點人員<span id="staff" class="fields"></span>領取收據
                 </div>
             </div>
             <div id="buttons-wrapper">

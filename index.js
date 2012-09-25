@@ -397,23 +397,24 @@ $(document).on('ready', function(e){
                                 $('#page6 #result_ID').html(data2.ID);
                                 $('#page6 #time').html(stands[data.stand_name].time);
                                 $('#page6 #money').html(data.total);
-                                $('#page6 #place').html(stands[data.stand_name].name.replace('、', '或'));
+                                $('#page6 #place').html(stands[data.stand_name].name.replace('、', '或')+stands[data.stand_name].room);
+                                $('#page6 #staff').html(stands[data.stand_name].staff);
                                 movePage(+1);
                             }
                             else
                             {
-                                alert('發生意外的錯誤，請稍候再試一遍');
+                                alert('發生意外的錯誤(伺服器傳回錯誤的資料)，請稍候再試一遍');
                                 //console.log(data);
                             }
                         }
                         else
                         {
-                            alert('發生意外的錯誤，請稍候再試一遍');
+                            alert('發生意外的錯誤(訂單新增失敗)，請稍候再試一遍');
                             //console.log(data);
                         }
                     }, 
                     error: function(xhr, status, err){
-                        alert('發生意外的錯誤，請稍候再試一遍');
+                        alert('發生意外的錯誤(網路連線失敗)，請稍候再試一遍');
                         //console.log(err, xhr);
                     }
                 });
