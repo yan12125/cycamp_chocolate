@@ -21,6 +21,10 @@
                 $.ajax({
                     url:'./data.json', 
                     success: function(data, status, xhr){
+                        if($.browser.msie)
+                        {
+                            $('#big_img').css('position', 'absolute');
+                        }
                         var type2 = ({schools:'可送達學校的名單', products: '巧克力型錄'})[params2.type];
                         var list = data.companies[params2.company][params2.type];
                         $('#title').html(data.companies[params2.company].name+'工作室 '+type2);
@@ -56,6 +60,19 @@
                                 'display': 'block' 
                             });
                             $('#img_tip').hide();
+                            if($.browser.msie === true)
+                            {
+                                var big_img = $('#big_img');
+                                big_img.css({
+                                    'left': $(document).scrollLeft()+350, 
+                                    'top': $(document).scrollTop()+80
+                                });
+                                if(big_img.width()>600)
+                                {
+                                    big_img.height(big_img.height()*600/big_img.width());
+                                    big_img.width(600);
+                                }
+                            }
                         });
                         $('#list img').on('mouseout', function(e){
                             $('#big_img').css('display', 'none');
