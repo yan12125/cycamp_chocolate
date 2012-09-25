@@ -1,4 +1,8 @@
 trash
 internal
 *.rar
+
+# it's compressed version
+data.json
+
 *.old
