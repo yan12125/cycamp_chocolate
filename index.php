@@ -16,7 +16,6 @@
     <head>
         <meta charset="UTF-8">
         <title>雲嘉會巧克力傳情 - 線上訂購網頁</title>
-        <!--link rel="shortcut icon" href="/chocolate/cloudhome.ico"-->
         <link rel="stylesheet" href="index.css" type="text/css">
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
         <script type="text/javascript" src="/HTML/library/json2.js"></script>

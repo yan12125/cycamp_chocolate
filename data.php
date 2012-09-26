@@ -68,3 +68,16 @@ function fee($company, $campus)
             break;
     }
 }
+
+function get_param($name)
+{
+    $obj = json_decode(file_get_contents('./.htsecret'), true);
+    if(isset($obj[$name]))
+    {
+        return $obj[$name];
+    }
+    else
+    {
+        return null;
+    }
+}

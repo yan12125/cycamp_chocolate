@@ -2,7 +2,8 @@
 require_once './db.php';
 require_once './data.php';
 require_once './auth.php';
-header_auth('cloudhome', 'query');
+
+header_auth(get_param('username'), get_param('password'));
 function utf8_to_escaped($s)
 {
     return substr(json_encode($s), 1, -1); // remove leading and trailing quotation mark

@@ -1,6 +1,7 @@
 <?php
-    require_once './auth.php';
-    header_auth('cloudhome', 'query');
+require_once './auth.php';
+require_once './data.php';
+header_auth(get_param('username'), get_param('password'));
 ?>
 <!DOCTYPE html>
 <html>

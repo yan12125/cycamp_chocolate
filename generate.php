@@ -4,7 +4,7 @@ require_once './data.php';
 require_once './auth.php';
 header('Content-type: text/plain;charset=utf-8');
 
-header_auth('cloudhome', 'chocolate');
+header_auth(get_param('username'), get_param('password'));
 _main();
 function _main()
 {
