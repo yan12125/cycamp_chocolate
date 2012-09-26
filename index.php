@@ -1,3 +1,16 @@
+<?php
+    if(isset($_GET['debug2']))
+    {
+        $start_time = strtotime('2012/9/29 00:00');
+        $end_time = strtotime('2012/10/7 23:59');
+        $now = time();
+        if($now<$start_time||$now>$end_time)
+        {
+            header('Location: not_running.html');
+            exit(0);
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>

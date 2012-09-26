@@ -1,9 +1,10 @@
 <?php
 require_once './db.php';
 require_once './data.php';
-//require_once './auth.php';
+require_once './auth.php';
 header('Content-type: text/plain;charset=utf-8');
 
+header_auth('cloudhome', 'chocolate');
 _main();
 function _main()
 {
