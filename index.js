@@ -129,6 +129,15 @@ $(document).on('ready', function(e){
                 }
             })();
 
+            // load data from cookie
+            for(var _s in fields)
+            {
+                if($.cookie('ch_'+_s)!==null)
+                {
+                    $('#page2 .orderer_'+_s).val($.cookie('ch_'+_s));
+                }
+            }
+
             // define the events of the buttons
             var movePage = function(direction){
                 curPage+=direction;
@@ -397,6 +406,7 @@ $(document).on('ready', function(e){
                                 $('#page6 #money').html(data.total);
                                 $('#page6 #place').html(stands[data.stand_name].name.replace('、', '或')+stands[data.stand_name].room);
                                 $('#page6 #staff').html(stands[data.stand_name].staff);
+                                $('#remember_me').parent().show();
                                 movePage(+1);
                             }
                             else
@@ -408,7 +418,7 @@ $(document).on('ready', function(e){
                         else
                         {
                             alert('發生意外的錯誤(訂單新增失敗)，請稍候再試一遍');
-                            console.log(data);
+                            //console.log(data);
                         }
                     }, 
                     error: function(xhr, status, err){
@@ -419,6 +429,18 @@ $(document).on('ready', function(e){
                 return false; // move page manually
             };
             verifiers[5] = function(){
+                if($('#remember_me').attr('checked')==='checked')
+                {
+                    alert('您的資料將會再下次訂購時自動填入。若要清除這些資料，請將所有網頁關閉。');
+                    for(var i in fields)
+                    {
+                        if(i === 'comment')
+                        {
+                            continue;
+                        }
+                        $.cookie('ch_'+i, data.orderer[i]);
+                    }
+                }
                 location.reload();
             };
 

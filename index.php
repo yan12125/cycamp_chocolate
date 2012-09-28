@@ -20,6 +20,7 @@
         <title>雲嘉會巧克力傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
         <link rel="stylesheet" href="index.css" type="text/css">
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
+        <script type="text/javascript" src="/HTML/library/jquery.cookie.js"></script>
         <script type="text/javascript" src="/HTML/library/json2.js"></script>
         <script src="//connect.facebook.net/zh_TW/all.js"></script>
         <script type="text/javascript" src="./index.js"></script>
@@ -133,7 +134,12 @@
                 <table id="buttons">
                     <tr>
                         <td><input type="button" id="button-1"></td>
-                        <td><input type="button" id="button+1"></td>
+                        <td>
+                            <span class="hidden">
+                                <input type="checkbox" id="remember_me">記住我的資料
+                            </span>
+                            <input type="button" id="button+1">
+                        </td>
                     </tr>
                 </table>
             </div>

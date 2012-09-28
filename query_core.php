@@ -1,9 +1,13 @@
 <?php
+if(!isset($_SERVER['HTTPS']))
+{
+    exit(1);
+}
 require_once './db.php';
 require_once './data.php';
 require_once './auth.php';
 
-header_auth(get_param('username'), get_param('password'));
+header_auth(get_param('username2'), get_param('password2'));
 function utf8_to_escaped($s)
 {
     return substr(json_encode($s), 1, -1); // remove leading and trailing quotation mark
@@ -11,7 +15,7 @@ function utf8_to_escaped($s)
 if(isset($_POST['s']))
 {
     $pdo = start_db();
-    $stmt = $pdo->prepare('SELECT orderer,receiver,stand,company,ID FROM chocolate WHERE orderer REGEXP ?');
+    $stmt = $pdo->prepare('SELECT orderer,receiver,stand,company,ID FROM chocolate WHERE orderer REGEXP ? AND debug="N"');
     $stmt->execute(array('\\{"name":"[^"]*'.utf8_to_escaped($_POST['s'])));
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $output = array();
