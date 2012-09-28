@@ -1,8 +1,10 @@
 <?php
-    if(isset($_GET['debug2']))
+    $debug = true;
+    if(!isset($_GET['debug']))
     {
+        $debug = false;
         $start_time = strtotime('2012/9/29 00:00');
-        $end_time = strtotime('2012/10/7 23:59');
+        $end_time = strtotime('2012/10/6 23:59');
         $now = time();
         if($now<$start_time||$now>$end_time)
         {
@@ -15,7 +17,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>雲嘉會巧克力傳情 - 線上訂購網頁</title>
+        <title>雲嘉會巧克力傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
         <link rel="stylesheet" href="index.css" type="text/css">
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
         <script type="text/javascript" src="/HTML/library/json2.js"></script>
@@ -26,7 +28,7 @@
         <div id="fb-root"></div>
         <div id="wrapper">
             <div id="banner">
-                台大雲嘉會巧克力傳情  網路訂購系統
+                台大雲嘉會巧克力傳情  網路訂購系統<?php if($debug){ echo '(測試用)'; } ?>
             </div>
             <table id="notes">
                 <tr>
@@ -49,8 +51,13 @@
                         <li>您可以在巧克力訂單上附上卡片喔～卡片可以向我們小福攤位領取或是自備。（自備卡片請不要太大）</li>
                     </ol>
                     台大雲嘉會巧克力傳情小福攤位服務時間：10/1~10/5 10:00~18:00<br>
-                    　　　　　　　　　　網路預購服務時間：9/29~10/7 18:00~23:59<br>
-                    活動總負責人：電機二 黃大珉 0921159155<br>
+                    　　　　　　　　　　網路預購服務時間：9/29~10/6 00:00~23:59<br>
+                    <table>
+                        <tbody>
+                            <tr><td>活動總負責人：</td><td>電機二 黃大珉 0921159155</td></tr>
+                            <tr><td></td><td>工管二 郭彥志 0988237022</td></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div id="links"></div>
                 <div id="like_button">
@@ -116,7 +123,7 @@
                 <div id="results">
                     <span id="emphasized_text">請記下您的訂單編號：</span>
                     <div id="result_ID"></div>
-                    並在服務時段<span id="time" class="fields"></span>
+                    並在服務時段<br><span id="time" class="fields"></span><br>
                     攜帶<span class="fields">$</span><span id="money" class="fields"></span>
                     至<span id="place" class="fields"></span><br>
                     向駐點人員<span id="staff" class="fields"></span>領取收據

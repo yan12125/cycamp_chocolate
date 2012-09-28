@@ -1,7 +1,7 @@
 <?php
 require_once './auth.php';
 require_once './data.php';
-header_auth(get_param('username'), get_param('password'));
+header_auth(get_param('username2'), get_param('password2'));
 ?>
 <!DOCTYPE html>
 <html>

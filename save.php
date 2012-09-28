@@ -19,10 +19,11 @@ function _main()
     $required_fields = array(
         'add_card' => '/^[0-1]$/', 
         'company' => '/^[A-B]$/', 
-        'stand_name' => '/^[A-BD-G]$/', 
+        'stand_name' => '/^[A-H]$/', 
         'ordered_products' => '/^\[(\d+,){13,21}\d+\]$/', // json contains 14-1 or 22-1 numbers
         'orderer' => $basic_data, 
         'receiver' => $basic_data, 
+        'debug' => '/^[YN]$/'
     );
     $output = array();
     $invalid_fields = array();
@@ -32,8 +33,8 @@ function _main()
         $campus = $data['receiver']['school']==='台灣大學'?'A':'B';
         $stand = $data['stand_name'];
         $ID = getMaxID($dbh, $data, $campus, $stand)+1;
-        $query = 'INSERT INTO chocolate (ID,stand,company,products,receiver,orderer,date,card)'
-                              .' VALUES (?,?,?,?,?,?,?,?)';
+        $query = 'INSERT INTO chocolate (ID,stand,company,products,receiver,orderer,date,card,debug)'
+                              .' VALUES (?,?,?,?,?,?,?,?,?)';
         $stmt = $dbh->prepare($query);
         $send_data = array(
             $ID, 
@@ -43,7 +44,8 @@ function _main()
             json_encode($data['receiver']), 
             json_encode($data['orderer']), 
             date('Y/n/j'), 
-            $data['add_card']?1:0
+            $data['add_card']?1:0, 
+            $data['debug']
         );
         if($stmt->execute($send_data))
         {

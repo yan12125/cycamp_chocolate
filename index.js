@@ -3,11 +3,6 @@ jQuery.fn.outerHTML = function(){
     return jQuery("<p>").append(this.eq(0).clone()).html();
 };
 
-if(location.search.indexOf('debug')!==-1)
-{
-    window.debug = 1;
-}
-
 $(document).on('ready', function(e){
     // load all data from data.json
     $.ajax({
@@ -289,10 +284,6 @@ $(document).on('ready', function(e){
                 }
 
                 var msg = '';
-                if(window.debug)
-                {
-                    invalid = false;
-                }
                 if(invalid)
                 {
                     msg += '部份資料未填或不完整！\n';
@@ -383,6 +374,13 @@ $(document).on('ready', function(e){
             verifiers[4] = function(){
                 // clone a temporary version because strings will be escaped
                 var data_copy = JSON.parse(JSON.stringify(data));
+                if(location.search.indexOf('debug')!==-1)
+                {
+                    data_copy.debug = 'Y';
+                }
+                else{
+                    data_copy.debug = 'N';
+                }
                 data_copy.ordered_products = JSON.stringify(data_copy.ordered_products); // make it less lengthy
                 $.ajax({
                     type: 'POST', 
@@ -392,7 +390,7 @@ $(document).on('ready', function(e){
                     success: function(data2, status, xhr){
                         if(data2.status === 'ok')
                         {
-                            if(/^[A-G][AB]{2}\d{5}$/.test(data2.ID))
+                            if(/^[A-H][AB]{2}\d{5}$/.test(data2.ID))
                             {
                                 $('#page6 #result_ID').html(data2.ID);
                                 $('#page6 #time').html(stands[data.stand_name].time);
@@ -410,7 +408,7 @@ $(document).on('ready', function(e){
                         else
                         {
                             alert('發生意外的錯誤(訂單新增失敗)，請稍候再試一遍');
-                            //console.log(data);
+                            console.log(data);
                         }
                     }, 
                     error: function(xhr, status, err){
@@ -436,7 +434,7 @@ $(document).on('ready', function(e){
             // load FB like button
             FB.init({
                 appId      : '227382584057414',
-                channelUrl : '//chyen.twbbs.org/chocolate/test/channel.html', // Channel File
+                channelUrl : '//chyen.twbbs.org/chocolate/channel.html', // Channel File
                 status     : true, // check login status
                 cookie     : true, // enable cookies to allow the server to access the session
                 xfbml      : true  // parse XFBML

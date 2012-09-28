@@ -25,3 +25,8 @@ compress_data.js 執行壓縮的小程式，須以node.js執行
     2. 限制generate.php與standX.cycamp的存取IP
 
 trash 一些暫存檔和不會用到的程式
+
+網址：
+http://chyen.twbbs.org/chocolate/
+https://www.facebook.com/CyChocolate
+

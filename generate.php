@@ -8,15 +8,15 @@ header_auth(get_param('username'), get_param('password'));
 _main();
 function _main()
 {
-    if(!isset($_GET['stand'])||!preg_match('/^[A-G]$/', $_GET['stand']))
+    if(!isset($_GET['stand'])||!preg_match('/^[A-H]$/', $_GET['stand']))
     {
         exit(1);
     }
     $dbh = start_db();
 
-    $query = 'SELECT * from chocolate WHERE stand=?';
+    $query = 'SELECT * from chocolate WHERE stand=? AND debug=?';
     $stmt = $dbh->prepare($query);
-    $stmt->execute(array($_GET['stand']));
+    $stmt->execute(array($_GET['stand'], $_GET['debug']));
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo count($result)."\n";
     foreach($result as $item)
