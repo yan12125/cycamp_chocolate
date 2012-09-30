@@ -15,7 +15,7 @@ function utf8_to_escaped($s)
 if(isset($_POST['s']))
 {
     $pdo = start_db();
-    $stmt = $pdo->prepare('SELECT orderer,receiver,stand,company,ID FROM chocolate WHERE orderer REGEXP ? AND debug="N"');
+    $stmt = $pdo->prepare('SELECT orderer,receiver,stand,company,ID,products FROM chocolate WHERE orderer REGEXP ? AND debug="N"');
     $stmt->execute(array('\\{"name":"[^"]*'.utf8_to_escaped($_POST['s'])));
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $output = array(
@@ -31,8 +31,8 @@ if(isset($_POST['s']))
         $ID = $item['stand'].$item['company'].$campus.sprintf("%05d", $item['ID']);
         $data['parsed_id'] = $ID;
         $output['data'][] = $data;
+        $output['total'] += price(json_decode($item['products'], true), $item['company']);
     }
-    $output['total'] = total($pdo);
     echo json_encode($output);
 }
 ?>
