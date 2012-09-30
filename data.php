@@ -81,3 +81,24 @@ function get_param($name)
         return null;
     }
 }
+
+function total($pdo)
+{
+    $sql = 'select products,company from chocolate where debug="N"';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $total = 0;
+    foreach($results as $item)
+    {
+        $total += price(json_decode($item['products'], true), $item['company']);
+    }
+    return $total;
+}
+
+function item_count($pdo)
+{
+    $stmt = $pdo->query('select count(*) from chocolate where debug="N"');
+    $results = $stmt->fetchAll(PDO::FETCH_NUM);
+    return $results[0][0];
+}

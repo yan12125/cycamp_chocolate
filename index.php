@@ -136,7 +136,7 @@
                         <td><input type="button" id="button-1"></td>
                         <td>
                             <span class="hidden">
-                                <input type="checkbox" id="remember_me">記住我的資料
+                                <input type="checkbox" id="remember_me">記住我的資料以便再次訂購
                             </span>
                             <input type="button" id="button+1">
                         </td>

@@ -18,16 +18,21 @@ if(isset($_POST['s']))
     $stmt = $pdo->prepare('SELECT orderer,receiver,stand,company,ID FROM chocolate WHERE orderer REGEXP ? AND debug="N"');
     $stmt->execute(array('\\{"name":"[^"]*'.utf8_to_escaped($_POST['s'])));
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $output = array();
-    for($i=0;$i<count($results);$i++)
+    $output = array(
+        'data' => array(), 
+        'count' => count($results), 
+        'total' => 0
+    );
+    for($i=0;$i<$output['count'];$i++)
     {
         $item = $results[$i];
         $data = json_decode($item['orderer'], true);
         $campus = campus($item['orderer'], $item['receiver']);
         $ID = $item['stand'].$item['company'].$campus.sprintf("%05d", $item['ID']);
         $data['parsed_id'] = $ID;
-        $output[] = $data;
+        $output['data'][] = $data;
     }
+    $output['total'] = total($pdo);
     echo json_encode($output);
 }
 ?>

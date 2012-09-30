@@ -18,12 +18,12 @@ header_auth(get_param('username2'), get_param('password2'));
             $(document).on('ready', function(e){
                 var run = function(){
                     $.post('query_core.php', {s: $('#name').val()}, function(data, status, xhr){
-                        $('#results').html('');
-                        if(data.length>0)
+                        if(data.data.length>0)
                         {
-                            for(var i=0;i<data.length;i++)
+                            $('#results').html('數量：'+data.count+'<br>總價：$'+data.total+'<br>');
+                            for(var i=0;i<data.data.length;i++)
                             {
-                                $('#results').append(data[i].name+" "+data[i].tel+" "+data[i].parsed_id+"<br>\n");
+                                $('#results').append(data.data[i].name+" "+data.data[i].tel+" "+data.data[i].parsed_id+"<br>\n");
                             }
                         }
                         else
