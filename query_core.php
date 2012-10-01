@@ -31,7 +31,7 @@ if(isset($_POST['s']))
         $ID = $item['stand'].$item['company'].$campus.sprintf("%05d", $item['ID']);
         $data['parsed_id'] = $ID;
         $output['data'][] = $data;
-        $output['total'] += price(json_decode($item['products'], true), $item['company']);
+        $output['total'] += price(json_decode($item['products'], true), $item['company'])+fee($item['company'], $campus);
     }
     echo json_encode($output);
 }
