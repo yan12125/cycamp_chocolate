@@ -109,16 +109,27 @@
                 width: 650px;
             }
 
-            #title
+            #title, #start_buy
             {
                 background: white;
-                left: 0px;
-                top: 0px;
-                padding: 20px;
-                width: 950px;
                 position: fixed;
+                top: 0px;
+            }
+
+            #title
+            {
+                padding: 20px;
+                width: 600px;
                 font-size: 30px;
                 font-weight: bold;
+                left: 0px;
+            }
+
+            #start_buy
+            {
+                left: 650px;
+                padding: 30px;
+                width: 300px;
             }
 
             #list img
@@ -153,6 +164,7 @@
     </head>
     <body>
         <span id="title"></span>
+        <span id="start_buy"><a href="/chocolate/">開始購買&gt;&gt;</a></span>
         <div id="wrapper">
             <div class="left">
                 <table id="list"></table>

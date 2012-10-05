@@ -50,8 +50,8 @@
                         <li>我們的承辦廠商有─山豬頭工作室與齊可工作室兩家，這兩家廠商能傳情的學校略有不同，請各位同學在選購巧克力前先<a href="search_school.html" target="_blank">查詢</a>您所要傳達的學校是否在清單內，沒在清單內的學校並沒有提供傳情服務。</li>
                         <li>訂單一旦送出後將無法做更改，請送出前務必確認您的資料正確性。您在領取收據時可以要求更改資料及訂購商品，但是要重填訂單，可能會浪費您寶貴的時間，敬請見諒。</li>
                         <li>您可以在巧克力訂單上附上卡片喔～卡片可以向我們小福攤位領取或是自備。（自備卡片請不要太大）</li>
-                        <li>每日訂單截止至<b>晚上11:00</b>。11:00後的訂購計入隔日的訂單。</li>
-                        <li>如果需要匿名傳情，請在<b>備註欄</b>裡註明。傳情人的基本資料仍須填寫，以便登記與核對。</li>
+                        <li>當日訂單請在隔日領取收據。每日訂單截止至<b>晚上11:00</b>。11:00後的訂購計入隔日的訂單。</li>
+                        <li>如果需要匿名傳情，請在<b>備註欄</b>裡註明。傳情人的基本資料仍須照實填寫，以便登記與核對。</li>
                     </ol>
                     台大雲嘉會巧克力傳情小福攤位服務時間：10/1~10/5 10:00~18:00<br>
                     　　　　　　　　　　網路預購服務時間：9/29~10/6 00:00~23:59<br>
@@ -64,7 +64,7 @@
                 </div>
                 <div id="links"></div>
                 <div id="like_button">
-                    <div class="fb-like" data-href="http://www.facebook.com/CyChocolate" data-send="true" data-width="350" data-show-faces="true" data-font="arial"></div>
+                    <div class="fb-like" data-href="http://www.facebook.com/CyChocolate" data-send="true" data-width="300" data-show-faces="true" data-font="arial"></div>
                 </div>
                 <span id="choices">請選擇您要訂購的廠商：</span>
             </div>

@@ -64,7 +64,7 @@
 #page1 #like_button
 {
     float: right;
-    width: 350px;
+    width: 300px;
     height: 1px; /* prevent to change the location of 開始訂購 */
 }
 
