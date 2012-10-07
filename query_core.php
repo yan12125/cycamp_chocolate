@@ -16,12 +16,14 @@ if(isset($_POST['s']))
 {
     $pdo = start_db();
     $stmt = $pdo->prepare('SELECT orderer,receiver,stand,company,ID,products FROM chocolate WHERE orderer REGEXP ? AND debug="N"');
-    $stmt->execute(array('\\{"name":"[^"]*'.utf8_to_escaped($_POST['s'])));
+    // http://lists.mysql.com/mysql/206935
+    $stmt->execute(array('\\{"name":"[^"]*'.str_replace("\\", "\\\\", utf8_to_escaped($_POST['s']))));
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $output = array(
         'data' => array(), 
         'count' => count($results), 
-        'total' => 0
+        'total' => 0, 
+        'debug' => array('\\{"name":"[^"]*'.utf8_to_escaped($_POST['s']))
     );
     for($i=0;$i<$output['count'];$i++)
     {
