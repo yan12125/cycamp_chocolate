@@ -1,11 +1,7 @@
-trash
-internal
 *.rar
+.swp
+.*.swp
 
-# it's compressed version
-data.json
-
-*.old
 images
 
 .ht*

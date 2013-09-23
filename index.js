@@ -9,6 +9,7 @@ $(document).on('ready', function(e){
         'url': './data.json',
         'success': function(_data, status, xhr){
             var curPage = 0;
+            var steps = _data.steps;
             var fields = _data.fields;
             var grades = _data.grades;
             var stands = _data.stands;
@@ -19,7 +20,7 @@ $(document).on('ready', function(e){
             // some data
             var users = [ 'orderer', 'receiver' ];
             var data = {
-                company: '', 
+                company: 'A', 
                 fee: 0, 
                 total: 0, 
                 stand_name: undefined, 
@@ -29,6 +30,13 @@ $(document).on('ready', function(e){
                 ordered_products: []
             };
 
+            // load steps
+            var stepsStr = [];
+            for(var i = 0; i < steps.length; i++)
+            {
+                stepsStr.push('<span class="step">Step '+(i+1)+' '+steps[i]+'</span>');
+            }
+            $('#steps').html(stepsStr.join('→'));
             // draw input fields
             for(var name in fields)
             {
@@ -56,8 +64,7 @@ $(document).on('ready', function(e){
             // add links
             for(var id in companies)
             {
-                $('#page1 #links').append(companies[id].name+'工作室 <a href="category.html?company='+id+'&type=products">商品型錄</a> <a href="category.html?company='+id+'&type=schools">可送達的學校</a><br>');
-                $('#page1 #choices').append('<input type="radio" name="company" value="'+id+'" id="radio_'+id+'"><label for="radio_'+id+'">'+companies[id].name+'工作室</label>');
+                $('#page1 #links').append('<a href="category.html">可傳情的學校</a><br>');
             }
             $('#page1 #links a').attr('target', '_blank');
             // load departments of NTU
@@ -66,12 +73,59 @@ $(document).on('ready', function(e){
                 $('#page2 .orderer_department').append('<option value="'+id+'">'+id+' '+departments[id]+'</option>');
             }
 
+            // load schools
+            $('#page2 .receiver_school').html('<option value="請選擇">請選擇</option>');
+            var _schools = companies[data.company].schools;
+            for(var i = 0; i < _schools.length; i++)
+            {
+                $('#page2 .receiver_school').append('<optgroup label="'+_schools[i].region+'"></optgroup>');
+                for(var j = 0; j < _schools[i].schools.length; j++)
+                {
+                    var school_name = _schools[i].schools[j];
+                    $('#page2 .receiver_school optgroup:last').append('<option value="'+school_name+'">'+school_name+'</option>');
+                }
+            }
+
             // load grades
             $('#page2 select[class$=_grade]').append('<option value="請選擇">請選擇</option>');
             for(var i in grades)
             {
                 $('#page2 select[class$=_grade]').append('<option value="'+(parseInt(i)+1)+'">'+grades[i]+'</option>');
             }
+
+            // load the products of the selected company
+            $('#page3 #products tbody').html('');
+            for(var j in companies[data.company].products)
+            {
+                var s = companies[data.company].products[j];
+                $('#page3 #products tbody').append('<tr><td class="img"><img src="images/'+s.img+'"></td><td class="name">'+s.name+'</td><td class="price">$'+s.price+'</td><td><input type="number" class="count" min="0" value="0"></td></tr>');
+            }
+            if($('#page3 #products .count')[0].type !== "number") // browser doesn't support html5 number
+            {
+                $('#page3 #products tr').find('td:last').append('<img src="images/plus.png" class="btn"><img src="images/minus.png" class="btn">');
+                $('#page3 #products img').on('mousedown', function(e){
+                    var item = $(this).parent().find('.count');
+                    var delta = (this.src.indexOf('plus.png')!==-1)?(+1):(-1);
+                    var original_value = parseInt(item.val());
+                    if(!isNaN(original_value))
+                    {
+                        if(original_value+delta>=0)
+                        {
+                            item.val(original_value+delta);
+                            // seems onchange is not call in firefox 15
+                            page3_count(); 
+                        }
+                    }
+                    else
+                    {
+                        alert('輸入錯誤！');
+                    }
+                });
+            }
+
+            $('#page3 #products .count').on('change', function(e){
+                page3_count();
+            });
 
             // load stands
             for(var i in stands)
@@ -98,6 +152,7 @@ $(document).on('ready', function(e){
                     toggle(1);
                 }
             });
+            $('#page2 .receiver_name').parent().after($('#page2 #add_card_wrapper'));
 
             // hide other pages
             var updatePage = null;
@@ -116,17 +171,8 @@ $(document).on('ready', function(e){
                 $('input[type=button]:eq(1)')
                     .val(next_texts[curPage]===''?'下一頁':next_texts[curPage]);
                 $('#notes').width($('#page'+(curPage+1)).width());
-                if(curPage>=1&&curPage<=5)
-                {
-                    $('#notes #step').html('Step '+curPage+': ');
-                    $('#notes #content').html(page_description[curPage-1]);
-                    //$('#notes #content').css('left', $('#notes #step').width()+10);
-                }
-                else
-                {
-                    $('#notes #step').html('');
-                    $('#notes #content').html('');
-                }
+                $('.step').removeClass('selected');
+                $('.step').eq(curPage).addClass('selected');
             })();
 
             // load data from cookie
@@ -177,68 +223,13 @@ $(document).on('ready', function(e){
                 return ret_obj;
             };
 
-            $('#page1 input[name=company]').on('change', function(e){
-                data.company = $('#page1 input[name=company]:checked').val();
-                
-                // load the products of the selected company
-                $('#page3 #products tbody').html('');
-                for(var j in companies[data.company].products)
-                {
-                    var s = companies[data.company].products[j];
-                    $('#page3 #products tbody').append('<tr><td class="img"><img src="images/'+s.img+'"></td><td class="name">'+s.name+'</td><td class="price">$'+s.price+'</td><td><input type="number" class="count" min="0" value="0"></td></tr>');
-                }
-                if($('#page3 #products .count')[0].type !== "number") // browser doesn't support html5 number
-                {
-                    $('#page3 #products tr').find('td:last').append('<img src="images/plus.png" class="btn"><img src="images/minus.png" class="btn">');
-                    $('#page3 #products img').on('mousedown', function(e){
-                        var item = $(this).parent().find('.count');
-                        var delta = (this.src.indexOf('plus.png')!==-1)?(+1):(-1);
-                        var original_value = parseInt(item.val());
-                        if(!isNaN(original_value))
-                        {
-                            if(original_value+delta>=0)
-                            {
-                                item.val(original_value+delta);
-                                // seems onchange is not call in firefox 15
-                                page3_count(); 
-                            }
-                        }
-                        else
-                        {
-                            alert('輸入錯誤！');
-                        }
-                    });
-                }
-
-                $('#page3 #products .count').on('change', function(e){
-                    page3_count();
-                });
-
-                // load schools
-                $('#page2 .receiver_school').html('<option value="請選擇">請選擇</option>');
-                for(var i in companies[data.company].schools)
-                {
-                    var school_name = companies[data.company].schools[i];
-                    $('#page2 .receiver_school').append('<option value="'+school_name+'">'+school_name+'</option>');
-                }
-            });
-
             $('#page2 #add_card').on('change', function(e){
                 data.add_card = ($('#page2 #add_card').attr('checked')==='checked')?1:0;
             });
 
             var verifiers = [];
             verifiers[0] = function(){
-                if(typeof companies[data.company]==='object')
-                {
-                    $('#page3 #link a').attr('href', 'category.html?company='+data.company+'&type=products');
-                    return true;
-                }
-                else
-                {
-                    alert('請選擇其中一家廠商！');
-                    return false
-                }
+                return true;
             };
             verifiers[1] = function(){
                 $('#page2 .row').css('color', '');
@@ -257,6 +248,10 @@ $(document).on('ready', function(e){
                         .find('input, select')
                         .not('.hidden')
                         .each(function(idx2, item2){
+                            if(item2.id == 'add_card')
+                            {
+                                return;
+                            }
                             var field_name = item2.className.substr((users[idx]+'_').length);
                             data[users[idx]][field_name] = (item2.value!=='請選擇')?item2.value:'';
                             var regex = fields[field_name].regex;
@@ -286,7 +281,16 @@ $(document).on('ready', function(e){
                 }
                 data.receiver.school = $('#page2 select[class=receiver_school]').val();
                 // IE does not support Array.prototype.indexOf
-                if($.inArray(data.receiver.school, companies[data.company].schools)===-1)
+                var _schools = companies[data.company].schools;
+                var school_invalid = true;
+                for(var i = 0; i < _schools.length; i++)
+                {
+                    if($.inArray(data.receiver.school, _schools[i].schools) !== -1)
+                    {
+                        school_invalid = false;
+                    }
+                }
+                if(school_invalid)
                 {
                     $('#page2 .receiver_school').parent().css('color', 'red');
                     invalid = true;
@@ -460,6 +464,9 @@ $(document).on('ready', function(e){
                 status     : true, // check login status
                 cookie     : true, // enable cookies to allow the server to access the session
                 xfbml      : true  // parse XFBML
+            });
+            FB.Event.subscribe('xfbml.render', function(response){
+                $('#like_button').css('top', -$('#like_button').children().height());
             });
         }, 
         'error': function(xhr, status, err){

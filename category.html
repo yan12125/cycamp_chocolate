@@ -6,82 +6,23 @@
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
         <script type="text/javascript">
             $(document).on('ready', function(e){
-                var params = location.search.substr(1).split('&');
-                var params2 = [];
-                for(var i=0;i<params.length;i++)
-                {
-                    var arr = params[i].split('=');
-                    params2[arr[0]] = arr[1];
-                }
-                if(!(/^[AB]$/.test(params2.company)&&/^(products|schools)$/.test(params2.type)))
-                {
-                    $('body').html('Error!');
-                    return;
-                }
-                $.ajax({
-                    url:'./data.json', 
-                    success: function(data, status, xhr){
-                        if($.browser.msie)
+                $.getJSON('./data.json', function(data, status, xhr){
+                    var list = data.companies.A.schools;
+                    for(var i=0;i<list.length;i++)
+                    {
+                        $('#list')
+                            .append('<tr class="region"><td>'+list[i].region+'</td></tr>')
+                            .append('<tr></tr>');
+                        for(var j=0; j<list[i].schools.length; j++)
                         {
-                            $('#big_img').css('position', 'absolute');
-                        }
-                        var type2 = ({schools:'可送達學校的名單', products: '巧克力型錄'})[params2.type];
-                        var list = data.companies[params2.company][params2.type];
-                        $('#title').html(data.companies[params2.company].name+'工作室 '+type2);
-                        for(var i=0;i<list.length;i++)
-                        {
-                            switch(params2.type)
+                            $('#list tr:last').append('<td>'+list[i].schools[j]+'</td>');
+                            if(j % 5 == 4)
                             {
-                                case 'products':
-                                    $('#img_tip').show();
-                                    var src = 'images/'+list[i].img;
-                                    var src_normal = src.replace('.small.jpg', '.jpg');
-                                    $('#list').append('<tr><td><a href="'+src_normal+'" target="_blank"><img src="'+src+'"></a></td><td>'+list[i].name+'</td><td>$'+list[i].price+'</td></tr>');
-                                    break;
-                                case 'schools':
-                                    $('.left').width(900);
-                                    $('#list').append('<tr></tr>');
-                                    for(var j=0;j<4&&i+j<list.length;j++)
-                                    {
-                                        $('#list tr:last').append('<td>'+list[i+j]+'</td>');
-                                    }
-                                    i+=3;
-                                    break;
+                                $('#list').append('<tr></tr>');
                             }
                         }
-                        $('#list img').on('mousemove', function(e){
-                            var img_src = this.src.replace('.small.jpg', '.jpg');
-                            // avoid flicker
-                            if($('#big_img').attr('src') !== img_src)
-                            {
-                                $('#big_img').attr('src', img_src);
-                            }
-                            if($.browser.msie === true)
-                            {
-                                var big_img = $('#big_img');
-                                big_img.css({
-                                    'left': $(document).scrollLeft()+350, 
-                                    'top': $(document).scrollTop()+80
-                                });
-                                if(big_img.width()>600)
-                                {
-                                    big_img.height(big_img.height()*600/big_img.width());
-                                    big_img.width(600);
-                                }
-                            }
-                            $('#big_img').css({
-                                'display': 'block' 
-                            });
-                            $('#img_tip').hide();
-                        });
-                        $('#list img').on('mouseout', function(e){
-                            $('#big_img').css('display', 'none');
-                            $('#big_img').attr('src', 'images/empty.gif');
-                            $('#img_tip').show();
-                        });
-                    }, 
-                    error: function(xhr, status, xhr){}, 
-                    datatype: 'json'
+                        $('#list').append('<tr><td><br></td></tr>');
+                    }
                 });
             });
         </script>
@@ -94,19 +35,6 @@
             #wrapper
             {
                 margin-top: 80px;
-                width: 950px;
-            }
-
-            .left
-            {
-                width: 300px;
-                float: left;
-            }
-
-            .right
-            {
-                float: right;
-                width: 650px;
             }
 
             #title, #start_buy
@@ -133,48 +61,18 @@
                 width: 300px;
             }
 
-            #list img
+            .region
             {
-                width: 100px;
-                height: 100px;
-                border: none;
-            }
-
-            #big_img
-            {
-                position: fixed;
-                left: 350px;
-                top: 80px;
-                display: none;
-                max-width: 600px;
-                max-height: 600px;
-                z-index: 1;
-            }
-
-            #img_tip
-            {
-                display: none;
-                font-size: 40px;
-                position: fixed;
-                left: 350px;
-                top: 80px;
-                padding: 100px;
-                z-index: 0;
+                font-weight: bold;
+                font-size: 120%;
             }
         </style>
     </head>
     <body>
-        <span id="title"></span>
+        <span id="title">可送達學校的名單</span>
         <span id="start_buy"><a href="/chocolate/">開始購買&gt;&gt;</a></span>
         <div id="wrapper">
-            <div class="left">
-                <table id="list"></table>
-            </div>
-            <div class="right">
-                <!--http://stackoverflow.com/questions/9126105/blank-image-encoded-as-data-uri-->
-                <img id="big_img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></img>
-                <div id="img_tip">滑鼠移到圖片上，<br>就會出現大圖喔</div>
-            </div>
+            <table id="list"></table>
         </div>
     </body>
 </html>

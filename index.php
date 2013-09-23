@@ -3,8 +3,8 @@
     if(!isset($_GET['debug']))
     {
         $debug = false;
-        $start_time = strtotime('2012/9/29 00:00');
-        $end_time = strtotime('2012/10/6 23:59');
+        $start_time = strtotime('2013/9/27 00:00');
+        $end_time = strtotime('2013/10/5 23:59');
         $now = time();
         if($now<$start_time||$now>$end_time)
         {
@@ -14,7 +14,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
     <head>
         <meta charset="UTF-8">
         <title>雲嘉會巧克力傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
@@ -33,59 +33,74 @@
             </div>
             <table id="notes">
                 <tr>
-                    <td id="step"></td>
+                    <td id="steps"></td>
                     <td id="content"></td>
                 </td>
             </table>
             <div id="page1">
                 <div id="messages">
-                    <!--今年台大雲嘉會的巧克力傳情有網路預購系統，可以節省大家的排隊時間喔！-->
-                    　　歡迎各位貴賓使用本系統預購巧克力傳情的服務，請依照流程引導輸入必要的資訊，就可以完成巧克力的預購了。今年台大雲嘉會的巧克力傳情承辦廠商有兩個工作室，這兩個工作室的巧克力都各具特色，很適合同學們在聖誕節前給好友或情人一個驚喜！那就開始預購喜歡的巧克力吧～<br>
+                    <div style="font-size: 120%">
+                    為了傳遞自己的心意，卻得在大太陽底下大排長龍……<br>
+                    歡迎使用台大雲嘉會巧心巧語校園傳情網路訂購系統！<br>
+                    只需要簡單的五個步驟，就可以省去現場排隊等待之苦^.&lt; <br><br>
+                    </div>
 
-                    　注意事項：<br>
+                    <div id="links"></div><br><br>
+                    注意事項：
                     <ol>
-                        <li>台大雲嘉會巧克力傳情僅提供台大校內學生的服務，如有不便，敬請見諒。</li>
-                        <li>本預購單僅為縮短排隊時間，巧克力仍以實品為主。<!--如果網頁上的圖片有任何疑問，請洽詢我們的負責人。--></li>
-                        <li>填寫預購單後仍須到我們的攤位或是各宿舍的駐點向服務人員付款簽名並領取收據，填寫預購單僅為縮減同學們滯留攤位的時間，收據會由我們統一填寫並交給同學們，請同學妥善保存。</li>
-                        <li>我們的承辦廠商有─山豬頭工作室與齊可工作室兩家，這兩家廠商能傳情的學校略有不同，請各位同學在選購巧克力前先<a href="search_school.html" target="_blank">查詢</a>您所要傳達的學校是否在清單內，沒在清單內的學校並沒有提供傳情服務。</li>
-                        <li>訂單一旦送出後將無法做更改，請送出前務必確認您的資料正確性。您在領取收據時可以要求更改資料及訂購商品，但是要重填訂單，可能會浪費您寶貴的時間，敬請見諒。</li>
-                        <li>您可以在巧克力訂單上附上卡片喔～卡片可以向我們小福攤位領取或是自備。（自備卡片請不要太大）</li>
-                        <li>當日訂單請在隔日領取收據。每日訂單截止至<b>晚上11:00</b>。11:00後的訂購計入隔日的訂單。</li>
-                        <li>如果需要匿名傳情，請在<b>備註欄</b>裡註明。傳情人的基本資料仍須照實填寫，以便登記與核對。</li>
+                        <li>完成線上定購後仍需至選擇的付款地點繳費並領取收據，方為完成所有手續。</li>
+                        <li>有需要卡片者，至選擇地點繳費時，現場會提供卡片；亦可自備卡片（大小以不要超過書店萬用卡大小為佳，否則傳情過程易受損害）</li>
+                        <li>訂單一旦送出後將無法更改。可在繳費時向服務人員更改，但會浪費您的時間。請送出前務必確認您資料是否無誤。</li>
                     </ol>
-                    台大雲嘉會巧克力傳情小福攤位服務時間：10/1~10/5 10:00~18:00<br>
-                    　　　　　　　　　　網路預購服務時間：9/29~10/6 00:00~23:59<br>
+
+                    台大雲嘉會巧克力傳情小福攤位服務時間：9/30~10/4 09:00~17:00<br>
+                    　　　　　　　　　　網路預購服務時間：9/27~10/5 00:00~23:59<br><br>
                     <table>
                         <tbody>
-                            <tr><td>活動總負責人：</td><td>電機二 黃大珉 0921159155</td></tr>
-                            <tr><td></td><td>工管二 郭彥志 0988237022</td></tr>
+                            <tr>
+                                <td>活動總負責人：</td>
+                                <td>政治二 施學沂 0963013937</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>醫學二 李鴻瑋 0934262226</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>工管二 張沛綸 0972257151</td>
+                            </tr>
                         </tbody>
                     </table>
+                    <div id="like_button">
+                        <fb:like href="https://www.facebook.com/chocotaida" width="300" show_faces="true" send="true"></fb:like>
+                    </div>
                 </div>
-                <div id="links"></div>
-                <div id="like_button">
-                    <div class="fb-like" data-href="http://www.facebook.com/CyChocolate" data-send="true" data-width="300" data-show-faces="true" data-font="arial"></div>
-                </div>
-                <span id="choices">請選擇您要訂購的廠商：</span>
             </div>
             <div id="page2">
+                <div>
+                    注意事項：
+                    <ol>
+                        <li>請輸入傳情人與幸運人的資料（打*號為必填）</li>
+                        <li>文字內容<span style="color: red">不能包含「 * 」符號。</span></li>
+                    </ol>
+                </div>
                 <fieldset id="orderer_data">
                     <legend>傳情人資料</legend>
                 </fieldset>
                 <fieldset id="receiver_data">
                     <legend>幸運人資料</legend>
                 </fieldset>
-                <div id="add_card_wrapper">
+                <span id="add_card_wrapper">
                     <input type="checkbox" id="add_card">
                     <label for="add_card">附加卡片</label>
-                </div>
+                </span>
             </div>
             <div id="page3">
                 <div id="products_wrapper"><table id="products"><tbody></tbody></table></div>
                 <div class="left">
                     <div id="fee"></div>
                     <div id="link">
-                        <a href="#" target="_blank">巧克力型錄</a>
+                        <a href="category.html?company=A&type=products" target="_blank">巧克力型錄</a>
                     </div>
                 </div>
                 <div class="right">小計：$<span id="total">0</span></div>
@@ -138,7 +153,7 @@
                         <td><input type="button" id="button-1"></td>
                         <td>
                             <span class="hidden">
-                                <input type="checkbox" id="remember_me">記住我的資料以便再次訂購
+                                <input type="checkbox" id="remember_me" checked="checked">記住我的資料以便再次訂購
                             </span>
                             <input type="button" id="button+1">
                         </td>

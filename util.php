@@ -1,4 +1,4 @@
-<?
+<?php
 function validate_and_parse($src, &$dst, $required_fields, &$invalid_fields)
 {
     foreach($required_fields as $key=>$item)
