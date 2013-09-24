@@ -15,7 +15,7 @@ $(document).on('ready', function(e){
             var stands = _data.stands;
             var companies = _data.companies;
             var departments = _data.departments;
-            var page_description = _data.page_description;
+            var notices = _data.notice;
             
             // some data
             var users = [ 'orderer', 'receiver' ];
@@ -98,7 +98,7 @@ $(document).on('ready', function(e){
             for(var j in companies[data.company].products)
             {
                 var s = companies[data.company].products[j];
-                $('#page3 #products tbody').append('<tr><td class="img"><img src="images/'+s.img+'"></td><td class="name">'+s.name+'</td><td class="price">$'+s.price+'</td><td><input type="number" class="count" min="0" value="0"></td></tr>');
+                $('#page3 #products tbody').append('<tr><td class="img"><img src="'+s.img+'"></td><td class="name">'+s.name+'</td><td class="price">$'+s.price+'</td><td><input type="number" class="count" min="0" value="0"></td></tr>');
             }
             if($('#page3 #products .count')[0].type !== "number") // browser doesn't support html5 number
             {
@@ -130,7 +130,7 @@ $(document).on('ready', function(e){
             // load stands
             for(var i in stands)
             {
-                $('#page4 #pay_location').append('<input type="radio" name="stand" value="'+i+'" id="stand_'+i+'"><label for="stand_'+i+'">'+stands[i].name+' - '+stands[i].text+'</label><br>');
+                $('#page4 #pay_location').append('<input type="radio" name="stand" value="'+i+'" id="stand_'+i+'"><label for="stand_'+i+'">'+stands[i].name+' - '+stands[i].time.replace('\n', '<br>')+'</label><br>');
             }
 
             $('#page2 .receiver_department').parent().append($('#page2 .orderer_department').outerHTML());
@@ -161,6 +161,15 @@ $(document).on('ready', function(e){
                         $(item).attr('class', 'pages');
                         $(item).css('display', ((idx === curPage)?'block':'none'));
                 });
+                var $curPage = $('#page'+(curPage+1));
+                $curPage.find('.notices').html('<ol></ol>');
+                for(var i = 0; i < notices[curPage].length; i++)
+                {
+                    var content = notices[curPage][i]
+                                    .replace(/\[/g, '<span class="notice">')
+                                    .replace(/\]/g, '</span>');
+                    $curPage.find('.notices ol').append('<li>'+content+'</li>');
+                }
 
                 var next_texts = [ '開始訂購', '', '', '', '確認送出', '再次訂購' ];
                 var previous_texts = [ '', '', '', '', '修改', '' ];
@@ -170,7 +179,7 @@ $(document).on('ready', function(e){
                     .css('display', curPage===0||curPage===5?'none':'block');
                 $('input[type=button]:eq(1)')
                     .val(next_texts[curPage]===''?'下一頁':next_texts[curPage]);
-                $('#notes').width($('#page'+(curPage+1)).width());
+                $('#notes').width($curPage.width());
                 $('.step').removeClass('selected');
                 $('.step').eq(curPage).addClass('selected');
             })();
@@ -324,9 +333,6 @@ $(document).on('ready', function(e){
                         $('#page3 #fee').html('校外運費：$'+data.fee);
                     }
                     $('#page3 #total').html(data.fee);
-                    // to prevent .right jumping to second line and 
-                    // make next and previous buttons floating as total changes
-                    $('#page3 .left').width(350); 
                     return true;
                 }
             };
@@ -403,7 +409,7 @@ $(document).on('ready', function(e){
                     success: function(data2, status, xhr){
                         if(data2.status === 'ok')
                         {
-                            if(/^[A-H][AB]{2}\d{5}$/.test(data2.ID))
+                            if(/^\d{4}$/.test(data2.ID))
                             {
                                 $('#page6 #result_ID').html(data2.ID);
                                 $('#page6 #time').html(stands[data.stand_name].time);

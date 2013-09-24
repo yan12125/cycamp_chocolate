@@ -22,9 +22,10 @@ function _main()
     foreach($result as $item)
     {
         $parts = array();
-        // ID => XYZddddd
+        // ID => dddd, each region has its own counter
         $campus = campus($item['orderer'], $item['receiver']);
-        $parts[] = $item['stand'].$item['company'].$campus.sprintf("%05d", $item['ID']);
+        $parts[] = sprintf("%04d", $item['ID']);
+        $parts[] = $campus;
         $products = json_decode($item['products'], true);
         for($i=0;$i<count($products);$i++)
         {

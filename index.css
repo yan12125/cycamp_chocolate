@@ -9,6 +9,24 @@
     margin: 0px auto;
 }
 
+/*
+ * http://stackoverflow.com/questions/218760
+ * */
+.spacer
+{
+    clear: both;
+}
+
+.notice
+{
+    color: red;
+}
+
+#buttons-wrapper
+{
+    clear: both;
+}
+
 #banner
 {
     font-family: "WenQuanYi Zen Hei", "文泉驛正黑", "Microsoft JhengHei", "微軟正黑體", "dfkai-sb", "標楷體";
@@ -19,7 +37,6 @@
 
 .pages
 {
-    /* height: 500px; */
 }
 
 .left
@@ -138,17 +155,14 @@
     height: 25px;
 }
 
-#page4
+#page4, #page4 #pay_location_wrapper
 {
-    width: 500px;
+    width: 800px;
 }
 
-#page4 #pay_location_wrapper
+#border
 {
-    position: absolute;
-    width: 500px;
-    height: 200px;
-    top: 100px;
+    border: 1px solid black;
 }
 
 #page5 .caption
@@ -180,7 +194,6 @@
 #order_detail
 {
     width: 590px;
-    height: 450px;
     border: 1px solid black;
 }
 
@@ -203,7 +216,6 @@
     font-size: 40px;
     color: red;
     margin: 30px auto 30px auto;
-    text-decoration: underline;
 }
 
 #page6 #emphasized_text

@@ -25,5 +25,6 @@
 RewriteEngine On
 RewriteBase /chocolate
 RewriteRule ^stand([A-H])\.cycamp$ generate.php?stand=$1&debug=N
-RewriteRule ^stand([A-H])d\.cycamp$ generate.php?stand=$1&debug=Y [L]
+RewriteRule ^stand([A-H])d\.cycamp$ generate.php?stand=$1&debug=Y
 
+RewriteRule ^(FLORA|Fun)_(\d{3})\.jpg$ img.php?dir=$1&id=$2 [L]

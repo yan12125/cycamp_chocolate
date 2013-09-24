@@ -17,7 +17,7 @@
 <html xmlns:fb="http://ogp.me/ns/fb#">
     <head>
         <meta charset="UTF-8">
-        <title>雲嘉會巧克力傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
+        <title>雲嘉會巧心巧語校園傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
         <link rel="stylesheet" href="index.css" type="text/css">
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
         <script type="text/javascript" src="/HTML/library/jquery.cookie.js"></script>
@@ -29,7 +29,7 @@
         <div id="fb-root"></div>
         <div id="wrapper">
             <div id="banner">
-                台大雲嘉會巧克力傳情  網路訂購系統<?php if($debug){ echo '(測試用)'; } ?>
+                台大雲嘉會巧心巧語校園傳情  網路訂購系統<?php if($debug){ echo '(測試用)'; } ?>
             </div>
             <table id="notes">
                 <tr>
@@ -46,12 +46,7 @@
                     </div>
 
                     <div id="links"></div><br><br>
-                    注意事項：
-                    <ol>
-                        <li>完成線上定購後仍需至選擇的付款地點繳費並領取收據，方為完成所有手續。</li>
-                        <li>有需要卡片者，至選擇地點繳費時，現場會提供卡片；亦可自備卡片（大小以不要超過書店萬用卡大小為佳，否則傳情過程易受損害）</li>
-                        <li>訂單一旦送出後將無法更改。可在繳費時向服務人員更改，但會浪費您的時間。請送出前務必確認您資料是否無誤。</li>
-                    </ol>
+                    注意事項：<div class="notices"></div>
 
                     台大雲嘉會巧克力傳情小福攤位服務時間：9/30~10/4 09:00~17:00<br>
                     　　　　　　　　　　網路預購服務時間：9/27~10/5 00:00~23:59<br><br>
@@ -78,11 +73,7 @@
             </div>
             <div id="page2">
                 <div>
-                    注意事項：
-                    <ol>
-                        <li>請輸入傳情人與幸運人的資料（打*號為必填）</li>
-                        <li>文字內容<span style="color: red">不能包含「 * 」符號。</span></li>
-                    </ol>
+                    注意事項：<div class="notices"></div>
                 </div>
                 <fieldset id="orderer_data">
                     <legend>傳情人資料</legend>
@@ -107,34 +98,29 @@
             </div>
             <div id="page4">
                 <div id="pay_location_wrapper">
+                    注意事項：<div class="notices"></div>
                     <fieldset id="pay_location">
                         <legend>付款地點</legend>
                     </fieldset><br>
-                    <div>
-                        注意事項：
-                        <ol><li>請在您選擇的地點結帳領取收據，否則會沒有您的預購資料，要再填寫一次訂單，浪費您寶貴時間。</li>
-                        <li>請您在填寫完後隔天再前往指定地點結帳。</li>
-                        <li>各宿舍服務人員詳細服務時段與服務地點將在訂單送出後顯示，請多加留意。</li>
-                        <li>對於領取收據方面有任何疑問，請洽詢我們的FB粉絲團或活動負責人。
-                        <br><a href="https://www.facebook.com/CyChocolate" target="_blank">https://www.facebook.com/CyChocolate</a></li>
-                        </ol>
-                    </div>
                 </div>
             </div>
             <div id="page5">
-                <div class="left">
-                    <div class="caption" id="caption_orderer">傳情人資料(自己)</div>
-                    <div id="orderer"></div><br>
-                    <div class="caption">商品列表：</div>
-                    <div id="products2"></div>
-                </div>
-                <div class="right">
-                    <div class="caption" id="caption_receiver">幸運人資料(對方)</div>
-                    <div id="receiver"></div><br>
-                    <div class="caption">訂單資料：</div>
-                    總價：$<span id="total2"></span><br>
-                    付款地點：<span id="stand"></span><br>
-                    是否附加卡片：<span id="add_card2"></span><br>
+                <div id="border">
+                    <div class="left">
+                        <div class="caption" id="caption_orderer">傳情人資料(自己)</div>
+                        <div id="orderer"></div><br>
+                        <div class="caption">訂單資料：</div>
+                        總價：$<span id="total2"></span><br>
+                        付款地點：<span id="stand"></span><br>
+                        是否附加卡片：<span id="add_card2"></span><br>
+                        商品列表：
+                        <div id="products2"></div>
+                    </div>
+                    <div class="right">
+                        <div class="caption" id="caption_receiver">幸運人資料(對方)</div>
+                        <div id="receiver"></div><br>
+                    </div>
+                    <div class="spacer"></div>
                 </div>
             </div>
             <div id="page6">

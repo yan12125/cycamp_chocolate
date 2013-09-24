@@ -20,7 +20,7 @@ function _main()
         'add_card' => '/^[0-1]$/', 
         'company' => '/^[A-B]$/', 
         'stand_name' => '/^[A-H]$/', 
-        'ordered_products' => '/^\[(\d+,){13,21}\d+\]$/', // json contains 14-1 or 22-1 numbers
+        'ordered_products' => '/^\[(\d+,){22}\d+\]$/', // json contains 23-1 numbers
         'orderer' => $basic_data, 
         'receiver' => $basic_data, 
         'debug' => '/^[YN]$/'
@@ -32,7 +32,7 @@ function _main()
         $dbh = start_db();
         $campus = $data['receiver']['school']==='台灣大學'?'A':'B';
         $stand = $data['stand_name'];
-        $ID = getMaxID($dbh, $data, $campus, $stand)+1;
+        $ID = getMaxID($dbh, $data, $stand)+1;
         $query = 'INSERT INTO chocolate (ID,stand,company,products,receiver,orderer,date,card,debug)'
                               .' VALUES (?,?,?,?,?,?,?,?,?)';
         $stmt = $dbh->prepare($query);
@@ -49,7 +49,7 @@ function _main()
         );
         if($stmt->execute($send_data))
         {
-            $output['ID'] = $stand.$data['company'].$campus.sprintf("%05d", $ID);
+            $output['ID'] = sprintf("%04d", $ID);
             $output['status'] = 'ok';
         }
         else
@@ -66,31 +66,20 @@ function _main()
     }
     echo json_encode($output);
 }
-function getMaxID($dbh, $data, $campus, $stand)
+function getMaxID($dbh, $data, $stand)
 {
     //print_r(func_get_args());
-    $ID = 0;
-    $query = "SELECT ID,receiver from chocolate WHERE company=? AND stand=?";
+    $query = "SELECT MAX(ID) from chocolate WHERE company=? AND stand=?";
     $stmt = $dbh->prepare($query);
     $stmt->execute(array($data['company'], $stand));
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $IDs = array();
-    foreach($result as $item)
-    {
-        $receiver_data = json_decode($item['receiver'], true);
-        $campus2 = ($receiver_data['school']==='台灣大學')?'A':'B';
-        if($campus2 === $campus)
-        {
-            $IDs[] = $item['ID'];
-        }
-    }
-    if(count($IDs) === 0)
+    $result = $stmt->fetch(PDO::FETCH_NUM);
+    if(is_null($result[0]))
     {
         return 0;
     }
     else
     {
-        return max($IDs);
+        return $result[0];
     }
 }
 ?>
