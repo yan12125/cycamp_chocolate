@@ -3,6 +3,23 @@ jQuery.fn.outerHTML = function(){
     return jQuery("<p>").append(this.eq(0).clone()).html();
 };
 
+function arrToTable(data, caption)
+{
+    var lines = data.split('\n');
+    var output = $('<table class="table_inline" cellspacing="5px"></table>');
+    for(var i = 0; i < lines.length; i++)
+    {
+        var row = '<td>'+((i == 0)?caption:'')+'</td>';
+        var cells = lines[i].split('\t');
+        for(var j = 0; j < cells.length; j++)
+        {
+            row += '<td>'+cells[j]+'</td>';
+        }
+        output.append('<tr>'+row+'</tr>');
+    }
+    return output.outerHTML();
+}
+
 $(document).on('ready', function(e){
     // load all data from data.json
     $.ajax({
@@ -62,10 +79,13 @@ $(document).on('ready', function(e){
             $('#page2 input[class$=_tel]').parent().append('(請全部輸入數字)');
 
             // add links
+            $('#page1 #links').append('【');
             for(var id in companies)
             {
-                $('#page1 #links').append('<a href="category.html">可傳情的學校</a><br>');
+                $('#page1 #links').append('<a href="category.html">可傳情的學校</a>');
             }
+            $('#page1 #links').append('】');
+            for(var id in companies)
             $('#page1 #links a').attr('target', '_blank');
             // load departments of NTU
             for(var id in departments)
@@ -130,7 +150,12 @@ $(document).on('ready', function(e){
             // load stands
             for(var i in stands)
             {
-                $('#page4 #pay_location').append('<input type="radio" name="stand" value="'+i+'" id="stand_'+i+'"><label for="stand_'+i+'">'+stands[i].name+' - '+stands[i].time.replace('\n', '<br>')+'</label><br>');
+                var dataTable = arrToTable(stands[i].time, '開放時間：');
+                $('#page4 #pay_location').append(
+                    '<input type="radio" name="stand" value="'+i+'" id="stand_'+i+'">'+
+                    '<label for="stand_'+i+'">'+stands[i].name+'</label><br>'+
+                    dataTable+'<br>'
+                );
             }
 
             $('#page2 .receiver_department').parent().append($('#page2 .orderer_department').outerHTML());
@@ -162,13 +187,14 @@ $(document).on('ready', function(e){
                         $(item).css('display', ((idx === curPage)?'block':'none'));
                 });
                 var $curPage = $('#page'+(curPage+1));
-                $curPage.find('.notices').html('<ol></ol>');
+                var tag = notices[curPage].length > 1?'ol':'ul';
+                $curPage.find('.notices').html('<'+tag+'></'+tag+'>');
                 for(var i = 0; i < notices[curPage].length; i++)
                 {
                     var content = notices[curPage][i]
                                     .replace(/\[/g, '<span class="notice">')
                                     .replace(/\]/g, '</span>');
-                    $curPage.find('.notices ol').append('<li>'+content+'</li>');
+                    $curPage.find('.notices '+tag).append('<li>'+content+'</li>');
                 }
 
                 var next_texts = [ '開始訂購', '', '', '', '確認送出', '再次訂購' ];
@@ -363,7 +389,7 @@ $(document).on('ready', function(e){
                     // output all data on the last page
                     $('#page5 #fee').html(data.fee);
                     $('#page5 #total2').html(data.total);
-                    $('#page5 #stand').html(stands[data.stand_name].name.replace('、', '或'));
+                    $('#page5 #stand').html(stands[data.stand_name].name);
                     $('#page5 #add_card2').html(data.add_card===1?'是':'否');
                     $('#page5 #company').html(companies[data.company].name);
                     $('#page5 #products2').html('');
@@ -411,10 +437,12 @@ $(document).on('ready', function(e){
                         {
                             if(/^\d{4}$/.test(data2.ID))
                             {
+                                var standName = stands[data.stand_name].name;
                                 $('#page6 #result_ID').html(data2.ID);
-                                $('#page6 #time').html(stands[data.stand_name].time);
+                                $('#page6 #time').html(arrToTable(stands[data.stand_name].time, '開放時間：'));
                                 $('#page6 #money').html(data.total);
-                                $('#page6 #place').html(stands[data.stand_name].name.replace('、', '或')+stands[data.stand_name].room);
+                                $('#page6 #dorm').html(standName);
+                                $('#page6 #place').html(standName+stands[data.stand_name].room);
                                 $('#page6 #staff').html(stands[data.stand_name].staff);
                                 $('#remember_me').parent().show();
                                 movePage(+1);
@@ -461,7 +489,7 @@ $(document).on('ready', function(e){
                 {
                     movePage(dir);
                 }
-            });
+            }).button();
 
             // load FB like button
             FB.init({
@@ -472,7 +500,12 @@ $(document).on('ready', function(e){
                 xfbml      : true  // parse XFBML
             });
             FB.Event.subscribe('xfbml.render', function(response){
-                $('#like_button').css('top', -$('#like_button').children().height());
+                var offsetTop = 0;
+                var $like = $('#like_button');
+                $like.children().each(function(){
+                    offsetTop -= $(this).height();
+                });
+                $like.css('top', offsetTop);
             });
         }, 
         'error': function(xhr, status, err){

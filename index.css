@@ -17,6 +17,15 @@
     clear: both;
 }
 
+/*
+ * http://stackoverflow.com/questions/7457319
+ * */
+.table_inline
+{
+    display: inline-table;
+    vertical-align: top;
+}
+
 .notice
 {
     color: red;
@@ -181,6 +190,11 @@
     color: red;
 }
 
+#page5 #products2
+{
+    margin-left: 50px;
+}
+
 #orderer_data
 {
     border: 1px solid black;
@@ -205,20 +219,11 @@
 
 #page6 #results
 {
-    text-align: center;
     width: 600px;
-    margin-top: 100px;
     font-size: 20px;
 }
 
-#page6 #result_ID
-{
-    font-size: 40px;
-    color: red;
-    margin: 30px auto 30px auto;
-}
-
-#page6 #emphasized_text
+.emphasized_text
 {
     color: red;
     font-size: 130%;

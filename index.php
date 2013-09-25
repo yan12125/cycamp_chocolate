@@ -19,8 +19,10 @@
         <meta charset="UTF-8">
         <title>雲嘉會巧心巧語校園傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
         <link rel="stylesheet" href="index.css" type="text/css">
+        <link rel="stylesheet" href="/HTML/library/jquery-ui.css" type="text/css">
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
         <script type="text/javascript" src="/HTML/library/jquery.cookie.js"></script>
+        <script type="text/javascript" src="/HTML/library/jquery-ui.js"></script>
         <script type="text/javascript" src="/HTML/library/json2.js"></script>
         <script src="//connect.facebook.net/zh_TW/all.js"></script>
         <script type="text/javascript" src="./index.js"></script>
@@ -42,10 +44,10 @@
                     <div style="font-size: 120%">
                     為了傳遞自己的心意，卻得在大太陽底下大排長龍……<br>
                     歡迎使用台大雲嘉會巧心巧語校園傳情網路訂購系統！<br>
-                    只需要簡單的五個步驟，就可以省去現場排隊等待之苦^.&lt; <br><br>
+                    只需要簡單的六個步驟，就可以省去現場排隊等待之苦^.&lt; <br><br>
                     </div>
 
-                    <div id="links"></div><br><br>
+                    <span id="links"></span><br><br>
                     注意事項：<div class="notices"></div>
 
                     台大雲嘉會巧克力傳情小福攤位服務時間：9/30~10/4 09:00~17:00<br>
@@ -67,6 +69,10 @@
                         </tbody>
                     </table>
                     <div id="like_button">
+                        <a href="https://www.facebook.com/chocotaida" target="_blank">
+                            <!--img src="http://graph.facebook.com/chocotaida/picture"-->
+                            FB粉絲專頁：<br>2013台大雲嘉會 巧心巧語校園傳情
+                        </a>
                         <fb:like href="https://www.facebook.com/chocotaida" width="300" show_faces="true" send="true"></fb:like>
                     </div>
                 </div>
@@ -125,12 +131,18 @@
             </div>
             <div id="page6">
                 <div id="results">
-                    <span id="emphasized_text">請記下您的訂單編號：</span>
-                    <div id="result_ID"></div>
-                    並在服務時段<br><span id="time" class="fields"></span><br>
-                    攜帶<span class="fields">$</span><span id="money" class="fields"></span>
-                    至<span id="place" class="fields"></span><br>
-                    向駐點人員<span id="staff" class="fields"></span>領取收據
+                    <br>
+                    <span class="emphasized_text">請記下您的訂單編號：<span id="result_ID"></span></span>
+                    <br><br>
+                    注意事項：<div class="notices"></div>
+                    <span id="dorm"></span>負責人：<span id="staff"></span>
+                    <br>
+                    地點：<span id="place"></span>
+                    <br>
+                    <!--there is a table with cellspacing=5-->
+                    <span id="time" style="margin: -5px;"></span>
+                    <br>
+                    金額：$<span id="money"></span>
                 </div>
             </div>
             <div id="buttons-wrapper">
