@@ -37,7 +37,7 @@
                 <tr>
                     <td id="steps"></td>
                     <td id="content"></td>
-                </td>
+                </tr>
             </table>
             <div id="page1">
                 <div id="messages">
@@ -47,6 +47,7 @@
                     只需要簡單的六個步驟，就可以省去現場排隊等待之苦^.&lt; <br><br>
                     </div>
 
+                    【<a href="./gallery/2013CYChocolate" target="_blank" style="color: blue;">巧克力型錄</a>】
                     <span id="links"></span><br><br>
                     注意事項：<div class="notices"></div>
 
@@ -69,9 +70,10 @@
                         </tbody>
                     </table>
                     <div id="like_button">
+                        更多資訊請洽FB粉絲專頁：
                         <a href="https://www.facebook.com/chocotaida" target="_blank">
                             <!--img src="http://graph.facebook.com/chocotaida/picture"-->
-                            FB粉絲專頁：<br>2013台大雲嘉會 巧心巧語校園傳情
+                            <br>2013台大雲嘉會 巧心巧語校園傳情
                         </a>
                         <fb:like href="https://www.facebook.com/chocotaida" width="300" show_faces="true" send="true"></fb:like>
                     </div>
@@ -94,13 +96,10 @@
             </div>
             <div id="page3">
                 <div id="products_wrapper"><table id="products"><tbody></tbody></table></div>
-                <div class="left">
+                <div class="right">
                     <div id="fee"></div>
-                    <div id="link">
-                        <a href="category.html?company=A&type=products" target="_blank">巧克力型錄</a>
-                    </div>
+                    小計　　：$<span id="total">0</span>
                 </div>
-                <div class="right">小計：$<span id="total">0</span></div>
             </div>
             <div id="page4">
                 <div id="pay_location_wrapper">
@@ -111,23 +110,21 @@
                 </div>
             </div>
             <div id="page5">
-                <div id="border">
-                    <div class="left">
-                        <div class="caption" id="caption_orderer">傳情人資料(自己)</div>
-                        <div id="orderer"></div><br>
-                        <div class="caption">訂單資料：</div>
-                        總價：$<span id="total2"></span><br>
-                        付款地點：<span id="stand"></span><br>
-                        是否附加卡片：<span id="add_card2"></span><br>
-                        商品列表：
-                        <div id="products2"></div>
-                    </div>
-                    <div class="right">
-                        <div class="caption" id="caption_receiver">幸運人資料(對方)</div>
-                        <div id="receiver"></div><br>
-                    </div>
-                    <div class="spacer"></div>
+                <div class="left">
+                    <div class="caption" id="caption_orderer">傳情人資料(自己)</div>
+                    <div id="orderer"></div><br>
+                    <div class="caption">訂單資料：</div>
+                    總價：$<span id="total2"></span><br>
+                    付款地點：<span id="stand"></span><br>
+                    是否附加卡片：<span id="add_card2"></span><br>
+                    商品列表：
+                    <div id="products2"></div>
                 </div>
+                <div class="right">
+                    <div class="caption" id="caption_receiver">幸運人資料(對方)</div>
+                    <div id="receiver"></div><br>
+                </div>
+                <div class="spacer"></div>
             </div>
             <div id="page6">
                 <div id="results">
@@ -135,14 +132,16 @@
                     <span class="emphasized_text">請記下您的訂單編號：<span id="result_ID"></span></span>
                     <br><br>
                     注意事項：<div class="notices"></div>
+                    金額：$<span id="money"></span>
+                    <br><br>
                     <span id="dorm"></span>負責人：<span id="staff"></span>
+                    <br>
+                    負責人手機：<span id="phone"></span>
                     <br>
                     地點：<span id="place"></span>
                     <br>
                     <!--there is a table with cellspacing=5-->
                     <span id="time" style="margin: -5px;"></span>
-                    <br>
-                    金額：$<span id="money"></span>
                 </div>
             </div>
             <div id="buttons-wrapper">

@@ -62,7 +62,7 @@ $(document).on('ready', function(e){
                     var tmp = fields[name].type[idx];
                     var tagname = tmp===''?'input type="text"':tmp;
                     var id =users[idx]+'_'+name;
-                    var required_text = (fields[name].regex === '.*'?'':'*');
+                    var required_text = (fields[name].regex === '.*'?'':'* ');
                     // special case
                     if(users[idx]==='receiver'&&name === 'email')
                     {
@@ -124,8 +124,20 @@ $(document).on('ready', function(e){
             {
                 $('#page3 #products tr').find('td:last').append('<img src="images/plus.png" class="btn"><img src="images/minus.png" class="btn">');
                 $('#page3 #products img').on('mousedown', function(e){
+                    var delta = 0;
+                    if(this.src.indexOf('plus.png') !== -1)
+                    {
+                        delta = +1;
+                    }
+                    else if(this.src.indexOf('minus.png') !== -1)
+                    {
+                        delta = -1;
+                    }
+                    else
+                    {
+                        return;
+                    }
                     var item = $(this).parent().find('.count');
-                    var delta = (this.src.indexOf('plus.png')!==-1)?(+1):(-1);
                     var original_value = parseInt(item.val());
                     if(!isNaN(original_value))
                     {
@@ -392,15 +404,16 @@ $(document).on('ready', function(e){
                     $('#page5 #stand').html(stands[data.stand_name].name);
                     $('#page5 #add_card2').html(data.add_card===1?'是':'否');
                     $('#page5 #company').html(companies[data.company].name);
-                    $('#page5 #products2').html('');
+                    var products_json = [];
                     for(var i in companies[data.company].products)
                     {
                         if(data.ordered_products[i]>0)
                         {
                             var cur_product = companies[data.company].products[i];
-                            $('#page5 #products2').append(cur_product.name+' $'+cur_product.price+' *'+data.ordered_products[i]+'<br>');
+                            products_json.push([ cur_product.name, ' $'+cur_product.price, ' ×'+data.ordered_products[i] ].join('\t'));
                         }
                     }
+                    $('#page5 #products2').html(arrToTable(products_json.join('\n'), ''));
                     for(var idx in users)
                     {
                         $('#page5 #'+users[idx]).html('');
@@ -444,6 +457,7 @@ $(document).on('ready', function(e){
                                 $('#page6 #dorm').html(standName);
                                 $('#page6 #place').html(standName+stands[data.stand_name].room);
                                 $('#page6 #staff').html(stands[data.stand_name].staff);
+                                $('#page6 #phone').html(stands[data.stand_name].phone);
                                 $('#remember_me').parent().show();
                                 movePage(+1);
                             }

@@ -1,3 +1,10 @@
+body
+{
+    background-image: url('./fade_img.php');
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
 #wrapper
 {
     font-size: 16px;
@@ -46,6 +53,12 @@
 
 .pages
 {
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid black;
+    background: rgba(237, 228, 213, 0.9);
+    *background: rgb(237, 228, 213);
+    _background: rgb(237, 228, 213);
 }
 
 .left
@@ -80,16 +93,14 @@
     width: 50%;
 }
 
-#page1 #messages
+#page1
 {
     width: 800px;
-    border: 1px solid black;
 }
 
-#page1 #links, #page1 #choices
+#page1 #links a
 {
-    float: left;
-    width: 450px; /*800-292px*/
+    color: blue;
 }
 
 #page1 #like_button
@@ -99,6 +110,11 @@
     height: 1px; /* prevent to change the location of 開始訂購 */
     position: relative;
     top: 0px; /* determined after facebook widgets loaded */
+}
+
+#page1 #like_button a 
+{
+    color: #3300CC;
 }
 
 #page2 .row
@@ -116,6 +132,11 @@
 #page3 #link
 {
     width: 700px;
+}
+
+#page3 #fee
+{
+    margin-top: 20px; /* border radius of page 3 */
 }
 
 .hidden
@@ -157,11 +178,18 @@
     max-height: 60px;
 }
 
+#page3 td.img img
+{
+    border-radius: 10px;
+    border: 5px solid white;
+}
+
 #page3 img.btn
 {
     cursor: pointer;
     width: 25px;
     height: 25px;
+    margin-left: 5px;
 }
 
 #page4, #page4 #pay_location_wrapper
@@ -214,24 +242,16 @@
 #page6
 {
     width: 600px;
-    border: 1px solid black;
 }
 
 #page6 #results
 {
     width: 600px;
-    font-size: 20px;
 }
 
 .emphasized_text
 {
     color: red;
-    font-size: 130%;
+    font-size: 150%;
 }
 
-#page6 .fields
-{
-    font-size: 130%;
-    font-weight: bold;
-    color: blue;
-}
