@@ -18,11 +18,13 @@
     <head>
         <meta charset="UTF-8">
         <title>雲嘉會巧心巧語校園傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
-        <link rel="stylesheet" href="index.css" type="text/css">
         <link rel="stylesheet" href="/HTML/library/jquery-ui.css" type="text/css">
+        <link rel="stylesheet" href="/HTML/library/bootstrap.min.css">
+        <link rel="stylesheet" href="index.css" type="text/css">
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
         <script type="text/javascript" src="/HTML/library/jquery.cookie.js"></script>
         <script type="text/javascript" src="/HTML/library/jquery-ui.js"></script>
+        <script type="text/javascript" src="/HTML/library/bootstrap.min.js">
         <script type="text/javascript" src="/HTML/library/json2.js"></script>
         <script src="//connect.facebook.net/zh_TW/all.js"></script>
         <script type="text/javascript" src="./index.js"></script>

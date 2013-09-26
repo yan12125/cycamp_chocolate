@@ -68,7 +68,7 @@ $(document).on('ready', function(e){
                     {
                         required_text = '';
                     }
-                    $('#page2 #'+users[idx]+'_data').append('<span class="row">'+fields[name].zh+required_text+'<'+tagname+' class="'+id+'"></'+tagname+'></span><br>');
+                    $('#page2 #'+users[idx]+'_data').append('<span class="row_chocolate">'+fields[name].zh+required_text+'<'+tagname+' class="'+id+'"></'+tagname+'></span><br>');
                 }
             }
             $('#page2 input[class$=_tel]').attr('maxlength', '10');
@@ -122,7 +122,7 @@ $(document).on('ready', function(e){
             }
             if($('#page3 #products .count')[0].type !== "number") // browser doesn't support html5 number
             {
-                $('#page3 #products tr').find('td:last').append('<img src="images/plus.png" class="btn"><img src="images/minus.png" class="btn">');
+                $('#page3 #products tr').find('td:last').append('<img src="images/plus.png" class="btn_chocolate"><img src="images/minus.png" class="btn_chocolate">');
                 $('#page3 #products img').on('mousedown', function(e){
                     var delta = 0;
                     if(this.src.indexOf('plus.png') !== -1)
@@ -279,7 +279,7 @@ $(document).on('ready', function(e){
                 return true;
             };
             verifiers[1] = function(){
-                $('#page2 .row').css('color', '');
+                $('#page2 .row_chocolate').css('color', '');
                 var invalid = false;
                 var contains_asterisk = false;
 
@@ -503,7 +503,7 @@ $(document).on('ready', function(e){
                 {
                     movePage(dir);
                 }
-            }).button();
+            });
 
             // load FB like button
             FB.init({
