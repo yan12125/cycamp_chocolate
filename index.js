@@ -55,9 +55,11 @@ $(document).on('ready', function(e){
             }
             $('#steps').html(stepsStr.join('→'));
             // draw input fields
-            for(var name in fields)
+            for(var idx in users)
             {
-                for(var idx in users)
+                var $dataArea = $('#page2 #'+users[idx]+'_data');
+                $dataArea.append('<table></table>');
+                for(var name in fields)
                 {
                     var tmp = fields[name].type[idx];
                     var tagname = tmp===''?'input type="text"':tmp;
@@ -68,18 +70,18 @@ $(document).on('ready', function(e){
                     {
                         required_text = '';
                     }
-                    $('#page2 #'+users[idx]+'_data').append(
-                        '<span class="row_chocolate">'+
-                            fields[name].zh+required_text+
-                            '<'+tagname+' class="'+id+'"></'+tagname+'>'+
-                        '</span><br>'
+                    $dataArea.find('table').append(
+                        '<tr class="row_chocolate">'+
+                            '<td>'+fields[name].zh+required_text+'</td>'+
+                            '<td><'+tagname+' class="'+id+'"></'+tagname+'></td>'+
+                        '</tr>'
                     );
                 }
             }
             $('#page2 input[class$=_tel]').attr('maxlength', '10');
             $('#page2 .orderer_department').append('<option value="請選擇">請選擇</option>');
             $('#page2 .orderer_school').val('台灣大學');
-            $('#page2 input[class$=_tel]').parent().append('(請全部輸入數字)');
+            $('#page2 input[class$=_tel]').parent().append(' (請全部輸入數字)');
 
             // add links
             $('#page1 #links').append('【');
@@ -202,7 +204,7 @@ $(document).on('ready', function(e){
                     toggle(1);
                 }
             });
-            $('#page2 .receiver_name').parent().after($('#page2 #add_card_wrapper'));
+            $('#page2 .receiver_name').after($('#page2 #add_card_wrapper'));
 
             // hide other pages
             var updatePage = null;
@@ -321,13 +323,13 @@ $(document).on('ready', function(e){
                                 if(!(users[idx]==='receiver'&&field_name==='email'&&item2.value===''))
                                 {
                                     invalid = true;
-                                    $(item2).parent().css('color', 'red');
+                                    $(item2).parent().parent().css('color', 'red');
                                 }
                             }
                             if(item2.value.indexOf('*')!==-1)
                             {
                                 contains_asterisk = true;
-                                $(item2).parent().css('color', 'red');
+                                $(item2).parent().parent().css('color', 'red');
                             }
                         });
                 }
@@ -336,7 +338,7 @@ $(document).on('ready', function(e){
                 data.orderer.department = $('#page2 select[class=orderer_department]').val();
                 if(typeof departments[data.orderer.department]==='undefined')
                 {
-                    $('#page2 .orderer_department').parent().css('color', 'red');
+                    $('#page2 .orderer_department').parent().parent().css('color', 'red');
                     invalid = true;
                 }
                 data.receiver.school = $('#page2 select[class=receiver_school]').val();
@@ -352,9 +354,11 @@ $(document).on('ready', function(e){
                 }
                 if(school_invalid)
                 {
-                    $('#page2 .receiver_school').parent().css('color', 'red');
+                    $('#page2 .receiver_school').parent().parent().css('color', 'red');
                     invalid = true;
                 }
+                // it will be marked as red if receiver_name invalid
+                $('#page2 #add_card_wrapper').css('color', 'black');
 
                 var msg = '';
                 if(invalid)
