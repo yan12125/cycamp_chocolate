@@ -531,7 +531,7 @@ $(document).on('ready', function(e){
                 xfbml      : true  // parse XFBML
             });
             FB.Event.subscribe('xfbml.render', function(response){
-                var offsetTop = 0;
+                var offsetTop = -22; // page border (12px) and some space
                 var $like = $('#like_button');
                 $like.children().each(function(){
                     offsetTop -= $(this).height();

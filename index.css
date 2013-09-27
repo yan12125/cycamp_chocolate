@@ -52,6 +52,7 @@ body
 {
     clear: both;
     margin-top: 10px; /* bootstrap doesn't reserver any space */
+    margin-bottom: 10px;
 }
 
 #banner
