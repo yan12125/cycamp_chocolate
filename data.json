@@ -44,7 +44,7 @@
         },  
         "school": {
             "zh": "學校：", 
-            "type": [ "input type=\"hidden\"", "select" ], 
+            "type": [ "input type=\"text\" readonly=\"readonly\"", "select" ], 
             "regex": ""
         }, 
         "department": {

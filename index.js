@@ -68,14 +68,17 @@ $(document).on('ready', function(e){
                     {
                         required_text = '';
                     }
-                    $('#page2 #'+users[idx]+'_data').append('<span class="row_chocolate">'+fields[name].zh+required_text+'<'+tagname+' class="'+id+'"></'+tagname+'></span><br>');
+                    $('#page2 #'+users[idx]+'_data').append(
+                        '<span class="row_chocolate">'+
+                            fields[name].zh+required_text+
+                            '<'+tagname+' class="'+id+'"></'+tagname+'>'+
+                        '</span><br>'
+                    );
                 }
             }
             $('#page2 input[class$=_tel]').attr('maxlength', '10');
             $('#page2 .orderer_department').append('<option value="請選擇">請選擇</option>');
-            $('#page2 .orderer_school')
-                .val('台灣大學')
-                .parent().append('台灣大學');
+            $('#page2 .orderer_school').val('台灣大學');
             $('#page2 input[class$=_tel]').parent().append('(請全部輸入數字)');
 
             // add links
@@ -118,11 +121,21 @@ $(document).on('ready', function(e){
             for(var j in companies[data.company].products)
             {
                 var s = companies[data.company].products[j];
-                $('#page3 #products tbody').append('<tr><td class="img"><img src="'+s.img+'"></td><td class="name">'+s.name+'</td><td class="price">$'+s.price+'</td><td><input type="number" class="count" min="0" value="0"></td></tr>');
+                $('#page3 #products tbody').append(
+                    '<tr>'+
+                        '<td class="img_chocolate"><img src="'+s.img+'"></td>'+
+                        '<td class="name">'+s.name+'</td>'+
+                        '<td class="price">$'+s.price+'</td>'+
+                        '<td><input type="number" class="count" min="0" value="0"></td>'+
+                        '</tr>'
+                );
             }
             if($('#page3 #products .count')[0].type !== "number") // browser doesn't support html5 number
             {
-                $('#page3 #products tr').find('td:last').append('<img src="images/plus.png" class="btn_chocolate"><img src="images/minus.png" class="btn_chocolate">');
+                $('#page3 #products tr').find('td:last').append(
+                    '<img src="images/plus.png" class="btn_chocolate">'+
+                    '<img src="images/minus.png" class="btn_chocolate">'
+                );
                 $('#page3 #products img').on('mousedown', function(e){
                     var delta = 0;
                     if(this.src.indexOf('plus.png') !== -1)
@@ -171,13 +184,13 @@ $(document).on('ready', function(e){
             }
 
             $('#page2 .receiver_department').parent().append($('#page2 .orderer_department').outerHTML());
-            $('#page2 #receiver_data .orderer_department').attr('class', 'hidden receiver_department');
+            $('#page2 #receiver_data .orderer_department').attr('class', 'receiver_department').hide();
             $('#page2 .receiver_school').on('change', function(e){
                 // some util function
                 var toggle = function(i){
                     var prefix = '#page2 .receiver_department';
-                    $(prefix).removeClass('hidden');
-                    $(prefix+':eq('+i+')').addClass('hidden');
+                    $(prefix).show();
+                    $(prefix+':eq('+i+')').hide();
                 };
                 // 校內
                 if($('#page2 .receiver_school').val() === $('#page2 .orderer_school').val())
@@ -259,7 +272,8 @@ $(document).on('ready', function(e){
                 if(page3_validate_numbers())
                 {
                     $('#page3 #products tr').each(function(idx, item){
-                        var price = parseInt($(item).find('.price').html().substring(1)); // the first character is '$'
+                        var price = parseInt($(item).find('.price').html()
+                            .substring(1)); // the first character is '$'
                         var count_item = $(item).find('.count');
                         var count = parseInt(count_item.val());
                         ret_obj.products[idx] = count;
@@ -292,8 +306,7 @@ $(document).on('ready', function(e){
                 for(var idx in users)
                 {
                     $('#page2 #'+users[idx]+'_data')
-                        .find('input, select')
-                        .not('.hidden')
+                        .find('input:visible, select:visible')
                         .each(function(idx2, item2){
                             if(item2.id == 'add_card')
                             {
@@ -410,7 +423,11 @@ $(document).on('ready', function(e){
                         if(data.ordered_products[i]>0)
                         {
                             var cur_product = companies[data.company].products[i];
-                            products_json.push([ cur_product.name, ' $'+cur_product.price, ' ×'+data.ordered_products[i] ].join('\t'));
+                            products_json.push([ 
+                                cur_product.name, 
+                                ' $'+cur_product.price, 
+                                ' ×'+data.ordered_products[i]
+                            ].join('\t'));
                         }
                     }
                     $('#page5 #products2').html(arrToTable(products_json.join('\n'), ''));

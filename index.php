@@ -149,12 +149,12 @@
             <div id="buttons-wrapper">
                 <table id="buttons">
                     <tr>
-                        <td><input type="button" id="button-1"></td>
+                        <td><input type="button" id="button-1" class="btn btn-primary"></td>
                         <td>
                             <span class="hidden">
                                 <input type="checkbox" id="remember_me" checked="checked">記住我的資料以便再次訂購
                             </span>
-                            <input type="button" id="button+1">
+                            <input type="button" id="button+1" class="btn btn-primary">
                         </td>
                     </tr>
                 </table>
