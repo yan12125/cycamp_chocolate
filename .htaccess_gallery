@@ -1,0 +1,6 @@
+# IE can't display CYMK(CMYK) jpeg images
+# put this file in (root of gallery3)/var/
+RewriteEngine on
+RewriteCond %{HTTP_USER_AGENT} MSIE
+RewriteRule ^(.*)$ /chocolate/ie_cymk.php?path=$1 [L]
+
