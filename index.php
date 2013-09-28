@@ -14,13 +14,24 @@
     }
 ?>
 <!DOCTYPE html>
-<html xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://ogp.me/ns#">
     <head>
         <meta charset="UTF-8">
         <title>雲嘉會巧心巧語校園傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
         <link rel="stylesheet" href="/HTML/library/jquery-ui.css" type="text/css">
         <link rel="stylesheet" href="/HTML/library/bootstrap.min.css">
         <link rel="stylesheet" href="index.css" type="text/css">
+        <meta name="description" content="台大雲嘉會 2013巧心巧語校園傳情 線上訂購系統">
+        <meta name="keywords" content="巧克力傳情,2013,巧心巧語,校園傳情,線上訂購,雲嘉會,台大">
+        <meta name="author" content="台大雲嘉會">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="台大雲嘉會 2013巧心巧語校園傳情 線上訂購系統">
+        <meta property="og:url" content="http://chyen.twbbs.org/chocolate/">
+        <meta property="og:image" content="http://chyen.twbbs.org/chocolate/images/group.jpg">
+        <meta property="og:description" content="
+                    為了傳遞自己的心意，卻得在大太陽底下大排長龍……
+                    歡迎使用台大雲嘉會巧心巧語校園傳情網路訂購系統！
+                    只需要簡單的六個步驟，就可以省去現場排隊等待之苦^.&lt; ">
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
         <script type="text/javascript" src="/HTML/library/jquery.cookie.js"></script>
         <script type="text/javascript" src="/HTML/library/jquery-ui.js"></script>
