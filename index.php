@@ -14,7 +14,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://ogp.me/ns#">
+<html prefix="fb: http://ogp.me/ns/fb#" prefix="og: http://ogp.me/ns#">
     <head>
         <meta charset="UTF-8">
         <title>雲嘉會巧心巧語校園傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
@@ -35,7 +35,7 @@
         <script type="text/javascript" src="/HTML/library/jquery.js"></script>
         <script type="text/javascript" src="/HTML/library/jquery.cookie.js"></script>
         <script type="text/javascript" src="/HTML/library/jquery-ui.js"></script>
-        <script type="text/javascript" src="/HTML/library/bootstrap.min.js">
+        <script type="text/javascript" src="/HTML/library/bootstrap.min.js"></script>
         <script type="text/javascript" src="/HTML/library/json2.js"></script>
         <script src="//connect.facebook.net/zh_TW/all.js"></script>
         <script type="text/javascript" src="./index.js"></script>
@@ -160,12 +160,12 @@
             <div id="buttons-wrapper">
                 <table id="buttons">
                     <tr>
-                        <td><input type="button" id="button-1" class="btn btn-primary"></td>
+                        <td><input type="button" id="button-1" class="btn btn-primary" value="上一頁"></td>
                         <td>
                             <span class="hidden">
                                 <input type="checkbox" id="remember_me" checked="checked">記住我的資料以便再次訂購
                             </span>
-                            <input type="button" id="button+1" class="btn btn-primary">
+                            <input type="button" id="button+1" class="btn btn-primary" value="下一頁">
                         </td>
                     </tr>
                 </table>
