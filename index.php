@@ -17,12 +17,12 @@
 <html prefix="fb: http://ogp.me/ns/fb#" prefix="og: http://ogp.me/ns#">
     <head>
         <meta charset="UTF-8">
-        <title>雲嘉會巧心巧語校園傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
+        <title>2013台大雲嘉會巧心巧語校園傳情 - 線上訂購網頁<?php if($debug){ echo '(測試用)'; } ?></title>
         <link rel="stylesheet" href="/HTML/library/jquery-ui.css" type="text/css">
         <link rel="stylesheet" href="/HTML/library/bootstrap.min.css">
         <link rel="stylesheet" href="index.css" type="text/css">
         <meta name="description" content="台大雲嘉會 2013巧心巧語校園傳情 線上訂購系統">
-        <meta name="keywords" content="巧克力傳情,2013,巧心巧語,校園傳情,線上訂購,雲嘉會,台大">
+        <meta name="keywords" content="巧克力傳情,巧傳,2013,網路訂購,線上訂購,雲嘉會,台大,巧心巧語,校園傳情">
         <meta name="author" content="台大雲嘉會">
         <meta property="og:type" content="website">
         <meta property="og:title" content="台大雲嘉會 2013巧心巧語校園傳情 線上訂購系統">
@@ -39,6 +39,23 @@
         <script type="text/javascript" src="/HTML/library/json2.js"></script>
         <script src="//connect.facebook.net/zh_TW/all.js"></script>
         <script type="text/javascript" src="./index.js"></script>
+        <script>
+          (function (i, s, o, g, r, a, m) {
+              i['GoogleAnalyticsObject'] = r;
+              i[r] = i[r] || function () {
+                  (i[r].q = i[r].q || []).push(arguments)
+              }, i[r].l = 1 * new Date();
+              a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+              a.async = 1;
+              a.src = g;
+              m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+          ga('create', 'UA-44445204-1', 'twbbs.org');
+          ga('send', 'pageview');
+
+        </script>
     </head>
     <body>
         <div id="fb-root"></div>
