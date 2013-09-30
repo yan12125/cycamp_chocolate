@@ -3,6 +3,7 @@ if(!isset($_SERVER['HTTPS']))
 {
     $redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     header("Location:{$redirect}");
+    exit(0);
 }
 require_once './auth.php';
 require_once './data.php';
