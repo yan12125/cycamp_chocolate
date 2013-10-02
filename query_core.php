@@ -12,10 +12,20 @@ function utf8_to_escaped($s)
 {
     return substr(json_encode($s), 1, -1); // remove leading and trailing quotation mark
 }
-if(isset($_POST['s']))
+if(isset($_POST['s']) && isset($_POST['sort']))
 {
+    $order_by_str = array(
+        'date' => 'date DESC,stand,ID', 
+        'stand' => 'stand, date DESC, ID'
+    );
+    $sort = $_POST['sort'];
+    if(!isset($order_by_str[$sort]))
+    {
+        exit(0);
+    }
     $pdo = start_db();
-    $stmt = $pdo->prepare('SELECT orderer,receiver,stand,company,ID,products,date FROM chocolate WHERE orderer REGEXP ? AND debug="N" ORDER BY date DESC,stand,ID');
+    $query = 'SELECT orderer,receiver,stand,company,ID,products,date FROM chocolate WHERE orderer REGEXP ? AND debug="N" ORDER BY '.$order_by_str[$sort];
+    $stmt = $pdo->prepare($query);
     // http://lists.mysql.com/mysql/206935
     $stmt->execute(array('\\{"name":"[^"]*'.str_replace("\\", "\\\\", utf8_to_escaped($_POST['s']))));
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -23,8 +33,12 @@ if(isset($_POST['s']))
         'data' => array(), 
         'count' => count($results), 
         'total' => 0, 
-        'debug' => array('\\{"name":"[^"]*'.utf8_to_escaped($_POST['s']))
+        'debug' => array(
+            '\\{"name":"[^"]*'.utf8_to_escaped($_POST['s']), 
+            $query
+        )
     );
+    unset($output['debug']);
     for($i=0;$i<$output['count'];$i++)
     {
         $item = $results[$i];

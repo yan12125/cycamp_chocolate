@@ -18,7 +18,10 @@ header_auth(get_param('username2'), get_param('password2'));
 <script>
 $(document).on('ready', function(e){
     var run = function(){
-        $.post('query_core.php', {s: $('#name').val()}, function(data, status, xhr){
+        $.post('query_core.php', {
+                s: $('#name').val(), 
+                sort: $('input[name="sort_by"]:checked').val() 
+        }, function(data, status, xhr){
             if(data.data.length == 0)
             {
                 $('#results').html('無資料');
@@ -55,6 +58,9 @@ $(document).on('ready', function(e){
 </head>
 <body>
     傳情人姓名：<input type="text" id="name">
+    排列順序：
+    <input type="radio" name="sort_by" value="stand" checked="checked">攤位
+    <input type="radio" name="sort_by" value="date">日期
     <input type="button" value="查詢" id="run">
     <div id="results"></div>
 </body>
