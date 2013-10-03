@@ -184,6 +184,13 @@ $(document).on('ready', function(e){
                     dataTable+'<br>'
                 );
             }
+            // http://stackoverflow.com/questions/338463
+            if(new Date().getTime() > new Date('2013/10/03 23:59:59').getTime())
+            {
+                $('#page4 #pay_location #stand_A')
+                    .attr('disabled', 'disabled')
+                    .next().append('（網路預購已截止，請明天至現場訂購）');
+            }
 
             $('#page2 .receiver_department').parent().append($('#page2 .orderer_department').outerHTML());
             $('#page2 #receiver_data .orderer_department').attr('class', 'receiver_department').hide();
