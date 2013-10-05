@@ -189,7 +189,7 @@ $(document).on('ready', function(e){
             {
                 $('#page4 #pay_location #stand_A')
                     .attr('disabled', 'disabled')
-                    .next().append('（網路預購已截止，請明天至現場訂購）');
+                    .next().append('（網路預購已截止）');
             }
 
             $('#page2 .receiver_department').parent().append($('#page2 .orderer_department').outerHTML());
