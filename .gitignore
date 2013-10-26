@@ -2,7 +2,8 @@
 .swp
 .*.swp
 
-images
-gallery
+/images
+/gallery
+/data
 
 .htsecret
