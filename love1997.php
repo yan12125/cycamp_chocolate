@@ -1,10 +1,4 @@
 <?php
-if(php_sapi_name() !== 'cli')
-{
-    exit(0);
-}
-error_reporting(E_ALL|E_STRICT);
-
 require_once '3rdparty/simple_html_dom.php';
 
 class Love1997
@@ -44,6 +38,8 @@ class Love1997
         '開南大學' => '開南大學（日間部）', 
         '中山醫學大學' => '中山醫學大學（日間部）'
     );
+    protected $schools_id_to_name = array();
+    protected $stats = array();
 
     public function __construct()
     {
@@ -68,6 +64,15 @@ class Love1997
         for($i = 0; $i < count($products); $i++)
         {
             $this->prices[] = $products[$i]['price'];
+            $this->stats[$i] = array();
+            foreach($this->schools as $area)
+            {
+                foreach($area['id'] as $k => $school_id)
+                {
+                    $this->stats[$i][$school_id] = 0;
+                    $this->schools_id_to_name[$school_id] = $area['schools'][$k];
+                }
+            }
         }
     }
 
@@ -269,6 +274,11 @@ class Love1997
             else
             {
                 $this->local_data[$key] = $data[$i];
+                foreach($data[$i]['products'] as $product_id => $count)
+                {
+                    // $product_id is 0~22 here
+                    $this->stats[$product_id][$data[$i]['to']] += $count;
+                }
             }
         }
     }
@@ -471,6 +481,24 @@ class Love1997
         return true;
     }
 
+    public function generateTable()
+    {
+        $output = '';
+        $header = '';
+        foreach($this->stats as $row)
+        {
+            if($header === '')
+            {
+                $header = implode(',', array_map(function($key, $map) {
+                    // Excel don't recognize utf-8...
+                    return iconv('UTF-8', 'big5', $map); // I don't know why $map is the name
+                }, array_keys($row), $this->schools_id_to_name));
+            }
+            $output .= implode(',', array_values($row))."\n";
+        }
+        return $header."\n".$output;
+    }
+
     public function getLocalData()
     {
         return $this->local_data;
@@ -492,21 +520,4 @@ class Love1997
         exit(1);
     }
 }
-
-set_error_handler(array('Love1997', 'error_handler'));
-
-$instance = new Love1997();
-$data_dir = '/home/yen/School/102-1/Activities/chocolate/data/';
-$instance->loadFile(array(
-    $data_dir.'receiptdata1.cycamp', 
-    $data_dir.'receiptdata2.cycamp'
-));
-$instance->getRemoteList();
-file_put_contents('./data/parsed_local_data', print_r($instance->getLocalData(), true));
-file_put_contents('./data/parsed_remote_data', 
-    print_r($instance->getRemoteData(), true)."\n".
-    print_r($instance->getRemoteProducts(), true)."\n".
-    print_r($instance->loadRemoteSchools(), true)
-);
-$instance->check();
 ?>
