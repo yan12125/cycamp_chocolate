@@ -156,7 +156,7 @@
                 {
                     "region": "花東區", 
                     "schools": [ "宜蘭大學", "台東大學", "東華大學" ], 
-                    "id": [ "niu", "ndhu", "nttu" ]
+                    "id": [ "niu", "nttu", "ndhu" ]
                 }, 
                 {
                     "region": "桃竹苗區", 
