@@ -15,6 +15,7 @@ $instance->loadFile(array(
     $data_dir.'receiptdata1.cycamp', 
     $data_dir.'receiptdata2.cycamp'
 ));
+
 $instance->getRemoteList();
 file_put_contents('./data/parsed_local_data', print_r($instance->getLocalData(), true));
 file_put_contents('./data/parsed_remote_data', 
@@ -23,5 +24,6 @@ file_put_contents('./data/parsed_remote_data',
     print_r($instance->loadRemoteSchools(), true)
 );
 $instance->check();
+
 file_put_contents('./data/stats.csv', $instance->generateTable());
 ?>

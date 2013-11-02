@@ -40,6 +40,7 @@ class Love1997
     );
     protected $schools_id_to_name = array();
     protected $stats = array();
+    protected $receipt_count = array(); // per campus
 
     public function __construct()
     {
@@ -226,6 +227,11 @@ class Love1997
             {
                 echo 'Error: invalid area; ID = '.$data[$i]['id']."\n";
             }
+            if(!isset($this->receipt_count[$school_id]))
+            {
+                $this->receipt_count[$school_id] = 0;
+            }
+            $this->receipt_count[$school_id]++;
             // parse_grade
             $grade = 6;
             if($data[$i]['receiver']['grade'] !== '無')
@@ -485,18 +491,51 @@ class Love1997
     {
         $output = '';
         $header = '';
+        $tail = '';
+        $i = 0;
+        $products_sum = array();
         foreach($this->stats as $row)
         {
             if($header === '')
             {
-                $header = implode(',', array_map(function($key, $map) {
+                $header = implode(',', array_map(function($key, $map) use (&$count_schools) {
                     // Excel don't recognize utf-8...
+                    $count_schools[$key] = 0;
                     return iconv('UTF-8', 'big5', $map); // I don't know why $map is the name
                 }, array_keys($row), $this->schools_id_to_name));
             }
-            $output .= implode(',', array_values($row))."\n";
+            $counts = array_values($row);
+            foreach($row as $id => $count2)
+            {
+                $count_schools[$id] ++;
+            }
+            $sum = array_sum($counts);
+            $products_sum[$i] = $sum * $this->prices[$i];
+            $output .= implode(',', $counts).
+                       ','.$sum.
+                       ','.$this->prices[$i].
+                       ','.$products_sum[$i]."\n";
+            $i++;
         }
-        return $header."\n".$output;
+        $receipt_count = $this->receipt_count; // not touching the original data
+        $fee_total = 30 * $receipt_count['ntu'];
+        unset($receipt_count['ntu']);
+        $fee_total += 40 * array_sum(array_values($receipt_count));
+        foreach(array_keys($this->schools_id_to_name) as $id)
+        {
+            if(!isset($this->receipt_count[$id]))
+            {
+                $tail .= '0,';
+            }
+            else
+            {
+                $tail .= $this->receipt_count[$id].',';
+            }
+        }
+        $tail .= ',,'.$fee_total."\n".
+                 str_repeat(',', count($this->schools_id_to_name)+2).
+                 (array_sum($products_sum)+$fee_total);
+        return $header."\n".$output.$tail;
     }
 
     public function getLocalData()
